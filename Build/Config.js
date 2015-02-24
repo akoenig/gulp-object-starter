@@ -53,4 +53,4 @@ module.exports = (function () {
     singleton = singleton || new Config();
 
     return singleton;
-}())
+}());
