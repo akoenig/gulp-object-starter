@@ -6,14 +6,14 @@ gulp.task('lint', function() {
     var scriptPaths = [];
 
     config.packages.forEach(function(packageConfig) {
-        var jsConfig = packageConfig.scripts;
-        var bundles = jsConfig.bundles;
+        var scriptsConfig = packageConfig.scripts;
+        var bundles = scriptsConfig.bundles;
 
-        if(!jsConfig || !bundles) {
+        if(!scriptsConfig || !bundles) {
             return this;
         }
 
-        scriptPaths.push(packageConfig.basePath + jsConfig.src + '*.js');
+        scriptPaths.push(packageConfig.basePath + scriptsConfig.src + (scriptsConfig.filePattern || '**/*.js'));
     });
 
     return gulp.src(scriptPaths)

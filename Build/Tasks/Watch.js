@@ -17,7 +17,7 @@ gulp.task('watch', function() {
         }
 
         if(scriptsConfig && scriptsConfig.src) {
-            scriptPaths.push(basePath + scriptsConfig.src + (scriptsConfig.watchPattern || '**/*.js'))
+            scriptPaths.push(basePath + scriptsConfig.src + (scriptsConfig.filePattern || '**/*.js'))
         }
     });
 
