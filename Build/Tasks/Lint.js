@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var config = require('./../Config');
 
-gulp.task('test', function() {
+gulp.task('lint', function() {
     var scriptPaths = [];
 
     config.packages.forEach(function(packageConfig) {
