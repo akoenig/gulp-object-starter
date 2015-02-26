@@ -6,10 +6,10 @@ var config = require('./../../Config');
 
 gulp.task('compile:scripts', function () {
     config.packages.forEach(function(packageConfig) {
-        var jsConfig = packageConfig.scripts;
-        var bundles = jsConfig.bundles;
+        var scriptsConfig = packageConfig.scripts;
+        var bundles = scriptsConfig.bundles;
 
-        if(!jsConfig || !bundles) {
+        if(!scriptsConfig || !bundles) {
             return this;
         }
 
