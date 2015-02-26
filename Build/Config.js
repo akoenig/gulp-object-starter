@@ -5,53 +5,42 @@ var basePaths = {
     docs: 'Documentation/'
 };
 
-var Config = function () {
-    'use strict';
-
-    this.project = {
+var config = {
+    project: {
         isInDevMode: true,
         browserSupport: ['last 2 version', 'ie 9']
-    };
-    this.packages = [];
-
-    // Example Package Configuration
-    this.packages.push({
-        'basePath': basePaths.exts + 'myPackage/',
-        'sass': {
-            src: basePaths.private + 'Sass/**/*.scss',
-            dest: basePaths.public + 'Styles',
-            settings: {
-                imagePath: 'Images' // Used by the image-url helper
-            }
-        },
-        'images': {
-            src: basePaths.private + 'Images/*.{png,jpg,gif,svg}',
-            dest: basePaths.public + 'Images',
-            settings: {
-                progressive: true,
-                svgoPlugins: [{removeViewBox: false}]
-            }
-        },
-        'scripts': {
-            src: basePaths.private + 'Scripts/',
-            dest: basePaths.public + 'Scripts',
-            watchPattern: '**/*.js',
-            bundles: [{
-                entries: './typo3conf/ext/myPackage/Resources/Private/Scripts/App.js',
-                dest: './typo3conf/ext/myPackage/Resources/Public/Scripts',
-                outputName: 'App.min.js'
-            }]
-        }
-    });
-
-    return this;
+    },
+    packages: []
 };
 
-var singleton;
-module.exports = (function () {
-    'use strict';
+// Example Package Configuration
+config.packages.push({
+    'basePath': basePaths.exts + 'myPackage/',
+    'sass': {
+        src: basePaths.private + 'Sass/**/*.scss',
+        dest: basePaths.public + 'Styles',
+        settings: {
+            imagePath: 'Images' // Used by the image-url helper
+        }
+    },
+    'images': {
+        src: basePaths.private + 'Images/*.{png,jpg,gif,svg}',
+        dest: basePaths.public + 'Images',
+        settings: {
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}]
+        }
+    },
+    'scripts': {
+        src: basePaths.private + 'Scripts/',
+        dest: basePaths.public + 'Scripts',
+        watchPattern: '**/*.js',
+        bundles: [{
+            entries: './typo3conf/ext/myPackage/Resources/Private/Scripts/App.js',
+            dest: './typo3conf/ext/myPackage/Resources/Public/Scripts',
+            outputName: 'App.min.js'
+        }]
+    }
+});
 
-    singleton = singleton || new Config();
-
-    return singleton;
-}());
+module.exports = config;
