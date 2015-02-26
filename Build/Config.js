@@ -1,3 +1,4 @@
+var Package = require('./Models/Package.js');
 var basePaths = {
     exts: 'Web/typo3conf/ext/',
     private: 'Resources/Private/',
@@ -37,7 +38,7 @@ var config = {
 };
 
 // Example Package Configuration
-config.packages.push({
+config.packages.push(new Package({
     'basePath': basePaths.exts + 'myPackage/',
     'sass': {
         src: basePaths.private + 'Sass/**/*.scss',
@@ -64,6 +65,6 @@ config.packages.push({
             outputName: 'App.min.js'
         }]
     }
-});
+}));
 
 module.exports = config;

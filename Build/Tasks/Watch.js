@@ -12,11 +12,11 @@ gulp.task('watch', function() {
         var sassConfig = packageConfig.sass;
         var scriptsConfig = packageConfig.scripts;
 
-        if(sassConfig && sassConfig.src) {
+        if(sassConfig) {
             sassPaths.push(basePath + sassConfig.src);
         }
 
-        if(scriptsConfig && scriptsConfig.src) {
+        if(scriptsConfig) {
             scriptPaths.push(basePath + scriptsConfig.src + (scriptsConfig.filePattern || '**/*.js'))
         }
     });

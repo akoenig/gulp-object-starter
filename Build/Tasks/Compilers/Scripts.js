@@ -9,7 +9,7 @@ gulp.task('compile:scripts', function () {
         var scriptsConfig = packageConfig.scripts;
         var bundles = scriptsConfig.bundles;
 
-        if(!scriptsConfig || !bundles) {
+        if(!scriptsConfig) {
             return this;
         }
 

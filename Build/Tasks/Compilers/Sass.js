@@ -9,7 +9,7 @@ gulp.task('compile:sass', function () {
         var sassConfig = packageConfig.sass;
         var extensionBasePath = packageConfig.basePath;
 
-        if(!sassConfig || !extensionBasePath) {
+        if(!sassConfig) {
             return this;
         }
 

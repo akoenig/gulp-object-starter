@@ -8,7 +8,7 @@ gulp.task('compile:images', function () {
         var imagesConfig = packageConfig.images;
         var extensionBasePath = packageConfig.basePath;
 
-        if(!imagesConfig || !extensionBasePath) {
+        if(!imagesConfig) {
             return this;
         }
 
