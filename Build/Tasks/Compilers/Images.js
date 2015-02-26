@@ -4,9 +4,9 @@ var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
 
 gulp.task('compile:images', function () {
-    config.extensions.forEach(function(extensionConfig) {
-        var imagesConfig = extensionConfig.images;
-        var extensionBasePath = extensionConfig.basePath;
+    config.packages.forEach(function(packageConfig) {
+        var imagesConfig = packageConfig.images;
+        var extensionBasePath = packageConfig.basePath;
 
         if(!imagesConfig || !extensionBasePath) {
             return this;

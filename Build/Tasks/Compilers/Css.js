@@ -5,9 +5,9 @@ var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
 
 gulp.task('compile:css', function () {
-    config.extensions.forEach(function(extensionConfig) {
-        var sassConfig = extensionConfig.sass;
-        var extensionBasePath = extensionConfig.basePath;
+    config.packages.forEach(function(packageConfig) {
+        var sassConfig = packageConfig.sass;
+        var extensionBasePath = packageConfig.basePath;
 
         if(!sassConfig || !extensionBasePath) {
             return this;

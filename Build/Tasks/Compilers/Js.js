@@ -5,8 +5,8 @@ var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
 
 gulp.task('compile:js', function () {
-    config.extensions.forEach(function(extensionConfig) {
-        var jsConfig = extensionConfig.scripts;
+    config.packages.forEach(function(packageConfig) {
+        var jsConfig = packageConfig.scripts;
         var bundles = jsConfig.bundles;
 
         if(!jsConfig || !bundles) {

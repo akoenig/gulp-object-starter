@@ -12,11 +12,11 @@ var Config = function () {
         isInDevMode: true,
         browserSupport: ['last 2 version', 'ie 9']
     };
-    this.extensions = [];
+    this.packages = [];
 
-    // Example Extension Configuration
-    this.extensions.push({
-        'basePath': basePaths.exts + 'myExtension/',
+    // Example Package Configuration
+    this.packages.push({
+        'basePath': basePaths.exts + 'myPackage/',
         'sass': {
             src: basePaths.private + 'Sass/**/*.scss',
             dest: basePaths.public + 'Styles',
@@ -37,8 +37,8 @@ var Config = function () {
             dest: basePaths.public + 'Scripts',
             watchPattern: '**/*.js',
             bundles: [{
-                entries: './typo3conf/ext/myExtension/Resources/Private/Scripts/App.js',
-                dest: './typo3conf/ext/myExtension/Resources/Public/Scripts',
+                entries: './typo3conf/ext/myPackage/Resources/Private/Scripts/App.js',
+                dest: './typo3conf/ext/myPackage/Resources/Public/Scripts',
                 outputName: 'App.min.js'
             }]
         }
