@@ -8,13 +8,10 @@ gulp.task('lint', function() {
 
     config.packages.forEach(function(packageConfig) {
         var scriptsConfig = packageConfig.scripts;
-        var bundles = scriptsConfig.bundles;
 
-        if(!scriptsConfig || !bundles) {
-            return this;
+        if(scriptsConfig) {
+            scriptPaths.push(packageConfig.basePath + scriptsConfig.src + (scriptsConfig.filePattern || '**/*.js'));
         }
-
-        scriptPaths.push(packageConfig.basePath + scriptsConfig.src + (scriptsConfig.filePattern || '**/*.js'));
     });
 
     return gulp.src(scriptPaths)
