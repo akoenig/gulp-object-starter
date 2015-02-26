@@ -7,10 +7,11 @@ gulp.task('compile:modernizr', function() {
     var searchPaths = [];
 
     config.packages.forEach(function(packageConfig) {
+        var sassConfig = packageConfig.sass;
         var scriptsConfig = packageConfig.scripts;
 
-        if(scriptsConfig) {
-            searchPaths.push(packageConfig.basePath + scriptsConfig.src + (scriptsConfig.filePattern || '**/*.js'));
+        if(sassConfig) {
+            searchPaths.push(packageConfig.basePath + sassConfig.src);
         }
 
         if(scriptsConfig) {
