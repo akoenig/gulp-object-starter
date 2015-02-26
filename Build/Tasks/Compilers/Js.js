@@ -14,10 +14,6 @@ gulp.task('compile:js', function () {
         }
 
         bundles.forEach(function(bundleConfig) {
-            // Fix the paths, since we can't reference to 'this' in the config, and don't want that much repetition of path references.
-            bundleConfig.entries = './' + extensionConfig.basePath + jsConfig.src + bundleConfig.entries;
-            bundleConfig.dest = './' + extensionConfig.basePath + jsConfig.dest;
-
             return browserify(bundleConfig)
                 .bundle()
                 .on('error', Logger)

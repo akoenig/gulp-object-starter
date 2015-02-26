@@ -18,7 +18,7 @@ var Config = function () {
     this.extensions.push({
         'basePath': basePaths.exts + 'myExtension/',
         'sass': {
-            src: basePaths.private + 'Sass/*.{sass,scss}',
+            src: basePaths.private + 'Sass/**/*.scss',
             dest: basePaths.public + 'Styles',
             settings: {
                 imagePath: 'Images' // Used by the image-url helper
@@ -35,9 +35,10 @@ var Config = function () {
         'scripts': {
             src: basePaths.private + 'Scripts/',
             dest: basePaths.public + 'Scripts',
+            watchPattern: '**/*.js',
             bundles: [{
-                entries: 'App.js',
-                dest: basePaths.public + 'Scripts',
+                entries: './typo3conf/ext/myExtension/Resources/Private/Scripts/App.js',
+                dest: './typo3conf/ext/myExtension/Resources/Public/Scripts',
                 outputName: 'App.min.js'
             }]
         }
