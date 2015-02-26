@@ -1,2 +1,4 @@
 node_modules/
-typo3conf/
+
+# Example files for testing purposes only.
+Web/
