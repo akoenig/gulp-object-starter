@@ -10,7 +10,14 @@ var config = {
         isInDevMode: true,
         browserSupport: ['last 2 version', 'ie 9']
     },
-    packages: []
+    packages: [],
+
+    // Configuration rules for http://jscs.info/
+    jscs: {
+        'esnext': true,
+        'preset': 'google',
+        'validateIndentation': null
+    }
 };
 
 // Example Package Configuration

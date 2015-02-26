@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
+var jscs = require('gulp-jscs');
 var config = require('./../Config');
 
 gulp.task('lint', function() {
@@ -18,5 +19,6 @@ gulp.task('lint', function() {
 
     return gulp.src(scriptPaths)
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jscs(config.jscs));
 });
