@@ -25,6 +25,7 @@
       "url": "https://github.com/Inkdpixels/"
     }
   ],
+  "private": true,
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Inkdpixels/gulp-typo3-starter/issues"
