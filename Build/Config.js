@@ -1,5 +1,5 @@
 var basePaths = {
-    exts: 'typo3conf/ext/',
+    exts: 'Web/typo3conf/ext/',
     private: 'Resources/Private/',
     public: 'Resources/Public/',
     docs: 'Documentation/'
@@ -59,8 +59,8 @@ config.packages.push({
         dest: basePaths.public + 'Scripts',
         filePattern: '**/*.js',
         bundles: [{
-            entries: './typo3conf/ext/myPackage/Resources/Private/Scripts/App.js',
-            dest: './typo3conf/ext/myPackage/Resources/Public/Scripts',
+            entries: './Web/typo3conf/ext/myPackage/Resources/Private/Scripts/App.js',
+            dest: './Web/typo3conf/ext/myPackage/Resources/Public/Scripts',
             outputName: 'App.min.js'
         }]
     }
