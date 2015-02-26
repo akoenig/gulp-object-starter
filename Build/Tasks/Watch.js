@@ -21,6 +21,6 @@ gulp.task('watch', function() {
         }
     });
 
-    gulp.watch(sassPaths, ['compile:css']);
-    gulp.watch(scriptPaths, ['compile:js']);
+    gulp.watch(sassPaths, ['compile:sass']);
+    gulp.watch(scriptPaths, ['compile:scripts']);
 });
