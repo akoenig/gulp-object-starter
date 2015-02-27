@@ -17,6 +17,7 @@ gulp.task('compile:sass', function () {
             .pipe(sass(sassConfig.settings))
             .on('error', Logger)
             .pipe(autoprefixer({ browsers: ['last 2 version'] }))
+            .on('error', Logger)
             .pipe(gulp.dest(extensionBasePath + sassConfig.dest));
     });
 });
