@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('default', ['lint', 'build']);
+gulp.task('default', ['lint', 'build', 'compress']);
