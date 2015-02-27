@@ -10,7 +10,7 @@ gulp.task('lint', function() {
         var scriptsConfig = packageConfig.scripts;
 
         if(scriptsConfig) {
-            scriptPaths.push(packageConfig.basePath + scriptsConfig.src + (scriptsConfig.filePattern || '**/*.js'));
+            scriptPaths.push(packageConfig.basePath + scriptsConfig.src);
         }
     });
 

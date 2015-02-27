@@ -15,7 +15,7 @@ gulp.task('compile:modernizr', function() {
         }
 
         if(scriptsConfig) {
-            searchPaths.push(packageConfig.basePath + scriptsConfig.src + (scriptsConfig.filePattern || '**/*.js'));
+            searchPaths.push(packageConfig.basePath + scriptsConfig.src);
         }
     });
 

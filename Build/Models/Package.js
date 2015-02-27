@@ -2,7 +2,7 @@ var requiredKeys = {
 	basics: ['basePath'],
 	sass: ['src', 'dest'],
 	images: ['src', 'dest', 'settings'],
-	scripts: ['src', 'dest', 'filePattern', 'bundles']
+	scripts: ['src', 'dest', 'bundles']
 };
 
 var Package = function(options) {

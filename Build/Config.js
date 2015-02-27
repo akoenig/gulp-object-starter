@@ -56,9 +56,8 @@ config.packages.push(new Package({
         }
     },
     'scripts': {
-        src: basePaths.private + 'Scripts/',
+        src: basePaths.private + 'Scripts/**/*.js',
         dest: basePaths.public + 'Scripts',
-        filePattern: '**/*.js',
         bundles: [{
             entries: './Web/typo3conf/ext/myPackage/Resources/Private/Scripts/App.js',
             dest: './Web/typo3conf/ext/myPackage/Resources/Public/Scripts',
