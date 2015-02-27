@@ -8,16 +8,16 @@ gulp.task('watch', function() {
 
     // Loop over each package and push the relevant paths to the referenced arrays.
     config.packages.forEach(function(packageConfig) {
-        var basePath = packageConfig.basePath;
+        var packageBasePath = packageConfig.basePath;
         var sassConfig = packageConfig.sass;
         var scriptsConfig = packageConfig.scripts;
 
         if(sassConfig) {
-            sassPaths.push(basePath + sassConfig.src);
+            sassPaths.push(packageBasePath + sassConfig.src);
         }
 
         if(scriptsConfig) {
-            scriptPaths.push(basePath + scriptsConfig.src)
+            scriptPaths.push(packageBasePath + scriptsConfig.src)
         }
     });
 

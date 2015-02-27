@@ -6,15 +6,15 @@ var config = require('./../../Config');
 gulp.task('compile:images', function () {
     config.packages.forEach(function(packageConfig) {
         var imagesConfig = packageConfig.images;
-        var extensionBasePath = packageConfig.basePath;
+        var packageBasePath = packageConfig.basePath;
 
         if(!imagesConfig) {
             return this;
         }
 
-        return gulp.src(extensionBasePath + imagesConfig.src)
+        return gulp.src(packageBasePath + imagesConfig.src)
             .pipe(imagemin(imagesConfig.settings))
             .on('error', Logger)
-            .pipe(gulp.dest(extensionBasePath + imagesConfig.dest));
+            .pipe(gulp.dest(packageBasePath + imagesConfig.dest));
     });
 });
