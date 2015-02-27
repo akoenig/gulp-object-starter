@@ -1,7 +1,7 @@
 {
   "name": "gulp-typo3-starter",
   "version": "0.0.1",
-  "description": "Starter gulpfile.js and structure for TYPO3 related projects",
+  "description": "Starter Gulpfile.js and structure for TYPO3 related projects",
   "main": "Gulpfile.js",
   "scripts": {
     "test": "gulp"
