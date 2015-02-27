@@ -59,8 +59,8 @@ config.packages.push(new Package({
         src: basePaths.private + 'Scripts/**/*.js',
         dest: basePaths.public + 'Scripts',
         bundles: [{
-            entries: './Web/typo3conf/ext/myPackage/Resources/Private/Scripts/App.js',
-            dest: './Web/typo3conf/ext/myPackage/Resources/Public/Scripts',
+            entries: './' + basePaths.exts + 'myPackage/' + basePaths.private + '/Scripts/App.js',
+            dest: './' + basePaths.exts + 'myPackage/' + basePaths.public + '/Scripts',
             outputName: 'App.min.js'
         }]
     }
