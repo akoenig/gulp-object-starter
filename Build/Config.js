@@ -60,8 +60,8 @@ config.packages.push(new Package({
         dest: basePaths.public + 'Scripts',
         bundles: [
             {
-                entries: './' + basePaths.exts + 'myPackage/' + basePaths.private + '/Scripts/App.js',
-                dest: './' + basePaths.exts + 'myPackage/' + basePaths.public + '/Scripts',
+                entries: './' + basePaths.exts + 'myPackage/' + basePaths.private + 'Scripts/App.js',
+                dest: './' + basePaths.exts + 'myPackage/' + basePaths.public + 'Scripts',
                 outputName: 'App.min.js'
             }
         ]
