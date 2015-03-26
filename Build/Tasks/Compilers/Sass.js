@@ -3,7 +3,8 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
-var packages = require('./../../Packages.js');
+var packagesRepository = require('./../../Packages.js');
+var packages = packagesRepository.gePackages();
 
 gulp.task('compile:sass', function() {
     'use strict';

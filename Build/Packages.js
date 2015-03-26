@@ -1,10 +1,10 @@
-var Package = require('./Models/Package.js');
+var Packages = require('./Repositories/Packages.js');
 var config = require('./Config.js');
+var packagesRepository = new Packages();
 var basePaths = config.paths;
-var PackagesRepository = [];
 
 // Example Package Configuration
-PackagesRepository.push(new Package({
+packagesRepository.addPackage({
     'basePath': basePaths.packages + 'myPackage/',
     'sass': {
         src: basePaths.private + 'Sass/**/*.scss',
@@ -18,7 +18,9 @@ PackagesRepository.push(new Package({
         dest: basePaths.public + 'Images',
         settings: {
             progressive: true,
-            svgoPlugins: [{removeViewBox: false}]
+            svgoPlugins: [{ 
+                removeViewBox: false 
+            }]
         }
     },
     'scripts': {
@@ -32,6 +34,6 @@ PackagesRepository.push(new Package({
             }
         ]
     }
-}));
+});
 
-module.exports = PackagesRepository;
+module.exports = packagesRepository;

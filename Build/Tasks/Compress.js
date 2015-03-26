@@ -2,7 +2,8 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var config = require('./../Config');
-var packages = require('./../Packages.js');
+var packagesRepository = require('./../Packages.js');
+var packages = packagesRepository.gePackages();
 
 gulp.task('compress', function() {
     'use strict';

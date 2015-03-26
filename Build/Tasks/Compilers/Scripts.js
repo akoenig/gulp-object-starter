@@ -3,7 +3,8 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
-var packages = require('./../../Packages.js');
+var packagesRepository = require('./../../Packages.js');
+var packages = packagesRepository.gePackages();
 
 gulp.task('compile:scripts', function() {
     'use strict';

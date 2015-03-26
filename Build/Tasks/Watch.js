@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var config = require('./../Config');
-var packages = require('./../Packages.js');
+var packagesRepository = require('./../Packages.js');
+var packages = packagesRepository.gePackages();
 
 gulp.task('watch', function() {
     'use strict';

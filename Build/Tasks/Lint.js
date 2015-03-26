@@ -2,7 +2,8 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var config = require('./../Config');
-var packages = require('./../Packages.js');
+var packagesRepository = require('./../Packages.js');
+var packages = packagesRepository.gePackages();
 
 gulp.task('lint', function() {
     'use strict';

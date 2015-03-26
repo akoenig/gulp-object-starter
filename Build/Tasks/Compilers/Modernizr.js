@@ -2,7 +2,8 @@ var gulp = require('gulp');
 var modernizr = require('gulp-modernizr');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
-var packages = require('./../../Packages.js');
+var packagesRepository = require('./../../Packages.js');
+var packages = packagesRepository.gePackages();
 var modernizrConfig = config.modernizr;
 
 gulp.task('compile:modernizr', function() {

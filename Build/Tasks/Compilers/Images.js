@@ -2,7 +2,8 @@ var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
-var packages = require('./../../Packages.js');
+var packagesRepository = require('./../../Packages.js');
+var packages = packagesRepository.gePackages();
 
 gulp.task('compile:images', function() {
     'use strict';
