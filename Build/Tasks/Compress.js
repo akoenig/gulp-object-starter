@@ -2,11 +2,12 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var config = require('./../Config');
+var packages = require('./../Packages.js');
 
 gulp.task('compress', function() {
     'use strict';
 
-    config.packages.forEach(function(packageConfig) {
+    packages.forEach(function(packageConfig) {
         var packageBasePath = packageConfig.basePath;
         var scriptsConfig = packageConfig.scripts;
         var sassConfig = packageConfig.sass;

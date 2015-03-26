@@ -3,11 +3,12 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
+var packages = require('./../../Packages.js');
 
 gulp.task('compile:scripts', function() {
     'use strict';
 
-    config.packages.forEach(function(packageConfig) {
+    packages.forEach(function(packageConfig) {
         var scriptsConfig = packageConfig.scripts;
         var bundles = scriptsConfig.bundles;
 

@@ -2,13 +2,14 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var config = require('./../Config');
+var packages = require('./../Packages.js');
 
 gulp.task('lint', function() {
     'use strict';
 
     var scriptPaths = [];
 
-    config.packages.forEach(function(packageConfig) {
+    packages.forEach(function(packageConfig) {
         var scriptsConfig = packageConfig.scripts;
 
         if(scriptsConfig) {

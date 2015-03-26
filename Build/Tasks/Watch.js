@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var config = require('./../Config');
-
+var packages = require('./../Packages.js');
 
 gulp.task('watch', function() {
     'use strict';
@@ -9,7 +9,7 @@ gulp.task('watch', function() {
     var scriptPaths = [];
 
     // Loop over each package and push the relevant paths to the referenced arrays.
-    config.packages.forEach(function(packageConfig) {
+    packages.forEach(function(packageConfig) {
         var packageBasePath = packageConfig.basePath;
         var sassConfig = packageConfig.sass;
         var scriptsConfig = packageConfig.scripts;

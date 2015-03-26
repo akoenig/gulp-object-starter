@@ -3,11 +3,12 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
+var packages = require('./../../Packages.js');
 
 gulp.task('compile:sass', function() {
     'use strict';
 
-    config.packages.forEach(function(packageConfig) {
+    packages.forEach(function(packageConfig) {
         var sassConfig = packageConfig.sass;
         var packageBasePath = packageConfig.basePath;
 

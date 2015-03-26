@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var modernizr = require('gulp-modernizr');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
+var packages = require('./../../Packages.js');
 var modernizrConfig = config.modernizr;
 
 gulp.task('compile:modernizr', function() {
@@ -9,7 +10,7 @@ gulp.task('compile:modernizr', function() {
 
     var searchPaths = [];
 
-    config.packages.forEach(function(packageConfig) {
+    packages.forEach(function(packageConfig) {
         var sassConfig = packageConfig.sass;
         var scriptsConfig = packageConfig.scripts;
 
