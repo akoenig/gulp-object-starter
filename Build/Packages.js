@@ -5,7 +5,7 @@ var PackagesRepository = [];
 
 // Example Package Configuration
 PackagesRepository.push(new Package({
-    'basePath': basePaths.exts + 'myPackage/',
+    'basePath': basePaths.packages + 'myPackage/',
     'sass': {
         src: basePaths.private + 'Sass/**/*.scss',
         dest: basePaths.public + 'Styles',
@@ -26,8 +26,8 @@ PackagesRepository.push(new Package({
         dest: basePaths.public + 'Scripts',
         bundles: [
             {
-                entries: './' + basePaths.exts + 'myPackage/' + basePaths.private + 'Scripts/App.js',
-                dest: './' + basePaths.exts + 'myPackage/' + basePaths.public + 'Scripts',
+                entries: './' + basePaths.packages + 'myPackage/' + basePaths.private + 'Scripts/App.js',
+                dest: './' + basePaths.packages + 'myPackage/' + basePaths.public + 'Scripts',
                 outputName: 'App.min.js'
             }
         ]

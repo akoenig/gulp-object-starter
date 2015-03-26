@@ -1,6 +1,6 @@
 var config = {
     paths: {
-        exts: 'Web/typo3conf/ext/',
+        packages: 'Web/typo3conf/ext/',
         private: 'Resources/Private/',
         public: 'Resources/Public/',
         docs: 'Documentation/'
