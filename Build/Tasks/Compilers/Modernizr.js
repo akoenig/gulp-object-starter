@@ -5,6 +5,8 @@ var config = require('./../../Config');
 var modernizrConfig = config.modernizr;
 
 gulp.task('compile:modernizr', function() {
+    'use strict';
+
     var searchPaths = [];
 
     config.packages.forEach(function(packageConfig) {

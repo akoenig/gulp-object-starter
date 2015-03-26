@@ -4,7 +4,9 @@ var source = require('vinyl-source-stream');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
 
-gulp.task('compile:scripts', function () {
+gulp.task('compile:scripts', function() {
+    'use strict';
+
     config.packages.forEach(function(packageConfig) {
         var scriptsConfig = packageConfig.scripts;
         var bundles = scriptsConfig.bundles;

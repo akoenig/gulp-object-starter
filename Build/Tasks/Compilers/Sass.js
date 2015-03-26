@@ -4,7 +4,9 @@ var autoprefixer = require('gulp-autoprefixer');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
 
-gulp.task('compile:sass', function () {
+gulp.task('compile:sass', function() {
+    'use strict';
+
     config.packages.forEach(function(packageConfig) {
         var sassConfig = packageConfig.sass;
         var packageBasePath = packageConfig.basePath;

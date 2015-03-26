@@ -4,6 +4,8 @@ var jscs = require('gulp-jscs');
 var config = require('./../Config');
 
 gulp.task('lint', function() {
+    'use strict';
+
     var scriptPaths = [];
 
     config.packages.forEach(function(packageConfig) {

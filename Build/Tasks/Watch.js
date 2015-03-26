@@ -3,6 +3,8 @@ var config = require('./../Config');
 
 
 gulp.task('watch', function() {
+    'use strict';
+
     var sassPaths = [];
     var scriptPaths = [];
 

@@ -6,6 +6,7 @@ var requiredKeys = {
 };
 
 var Package = function(options) {
+    'use strict';
 
 	// Check for required options before returning the package configuration.
 	this.validateKeys(requiredKeys.basics, options);
@@ -22,6 +23,8 @@ var Package = function(options) {
 	return options;
 };
 Package.prototype.validateKeys = function(requiredArray, targetObject, parentAttributeKeyName) {
+    'use strict';
+
 	if(!requiredArray || !targetObject) {
 		return;
 	}

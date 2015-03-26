@@ -4,6 +4,8 @@ var minifyCSS = require('gulp-minify-css');
 var config = require('./../Config');
 
 gulp.task('compress', function() {
+    'use strict';
+
     config.packages.forEach(function(packageConfig) {
         var packageBasePath = packageConfig.basePath;
         var scriptsConfig = packageConfig.scripts;
