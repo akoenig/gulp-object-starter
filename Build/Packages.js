@@ -5,6 +5,7 @@ var basePaths = config.paths;
 
 // Example Package Configuration
 packagesRepository.addPackage({
+    'name': 'examplePackage',
     'basePath': basePaths.packages + 'myPackage/',
     'sass': {
         src: basePaths.private + 'Sass/**/*.scss',

@@ -1,5 +1,9 @@
+var gulp = require('gulp');
+var _ = require('lodash');
+var hasObjectRequiredKeys = require('./../Utilities/HasObjectRequiredKeys.js')
+
 var requiredKeys = {
-	basics: ['basePath'],
+	primaries: ['basePath', 'name'],
 	sass: ['src', 'dest'],
 	images: ['src', 'dest', 'settings'],
 	scripts: ['src', 'dest', 'bundles']
@@ -8,33 +12,51 @@ var requiredKeys = {
 var Package = function(options) {
     'use strict';
 
-	// Check for required options before returning the package configuration.
-	this.validateKeys(requiredKeys.basics, options);
+    var hasPackageOptionsRequiredAttributes = this.hasPackageOptionsRequiredAttributes(options);
 
-	// Sass property validation.
-	this.validateKeys(requiredKeys.sass, options.sass, 'sass');
+    if(hasPackageOptionsRequiredAttributes) {	  	
+		this.options = options;
 
-	// Images property validation.
-	this.validateKeys(requiredKeys.images, options.images, 'scripts');
-
-	// Scripts property validation.
-	this.validateKeys(requiredKeys.scripts, options.scripts, 'scripts');
+		this.createTasks();
+    }
 
 	return options;
 };
-Package.prototype.validateKeys = function(requiredArray, targetObject, parentAttributeKeyName) {
+Package.prototype.hasPackageOptionsRequiredAttributes = function(options) {
     'use strict';
 
-	if(!requiredArray || !targetObject) {
-		return;
-	}
+    var hasRequiredAttributes = true;
+    var messageSuffix = ' while creating a new Package instance in ./Build/Config.js.';
 
-	requiredArray.forEach(function(key) {
-		var isKeyNotInOptions = !targetObject[key];
+    if(!options) {
+    	throw new Error('Please set an options object' + messageSuffix)
+    }
 
-		if(isKeyNotInOptions) {
-			throw new Error('Option "' + key + '" was not found ' + ((parentAttributeKeyName) ? ('in the "' + parentAttributeKeyName + '" object ') : '') + 'while creating a new Package instance in the ./Build/Config.js');
-		}
+    _.forEach(options, function(value, key) {
+    	var isConfigurationObj = _.isObject(value);
+    	var testResults;
+    	var isConfigurationObjValid = true;
+
+    	if(isConfigurationObj) {
+    		testResults = hasObjectRequiredKeys(value, requiredKeys[key]);
+    		isConfigurationObjValid = testResults.result
+    	}
+
+    	if(!isConfigurationObjValid) {
+    		hasRequiredAttributes = false;
+    		throw new Error('Option "' + testResults.missingKey + '" was not found in the "' + key + '" object' + messageSuffix);
+    	}
+    });
+
+    return hasRequiredAttributes;
+};
+
+Package.prototype.createTasks = function() {
+	'use strict';
+
+	gulp.task('somename', function() {
+		// Do stuff
+		console.log('yeo');
 	});
 };
 
