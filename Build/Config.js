@@ -7,7 +7,7 @@ var config = {
     },
     'project': {
         'isInDevMode': true,
-        'browserSupport': ['last 2 version', 'ie 9']
+        'browserSupport': ['last 2 versions', 'ie 9']
     },
     
     // Configuration rules for http://jscs.info/
