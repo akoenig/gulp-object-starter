@@ -3,7 +3,7 @@ var imagemin = require('gulp-imagemin');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
 var packagesRepository = require('./../../Packages.js');
-var packages = packagesRepository.gePackages();
+var packages = packagesRepository.getPackages();
 
 gulp.task('compile:images', function() {
     'use strict';

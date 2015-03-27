@@ -3,7 +3,7 @@ var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var config = require('./../Config');
 var packagesRepository = require('./../Packages.js');
-var packages = packagesRepository.gePackages();
+var packages = packagesRepository.getPackages();
 
 gulp.task('compress', function() {
     'use strict';

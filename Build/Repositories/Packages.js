@@ -10,7 +10,7 @@ Packages.prototype.addPackage = function(packageConfig) {
 
 	return newPackage;
 };
-Packages.prototype.gePackages = function() {
+Packages.prototype.getPackages = function() {
 	return this.models;
 };
 
