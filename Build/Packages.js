@@ -1,22 +1,27 @@
 var Packages = require('./Repositories/Packages.js');
 var config = require('./Config.js');
 var packagesRepository = new Packages();
-var basePaths = config.paths;
+var paths = config.paths;
+
+// Tasks
+packagesRepository.addTask({
+    'compile:sass': require('./Tasks/Compilers/Sass.js')
+});
 
 // Example Package Configuration
 packagesRepository.addPackage({
     'name': 'examplePackage',
-    'basePath': basePaths.packages + 'myPackage/',
+    'basePath': paths.packages + 'examplePackage/',
     'sass': {
-        src: basePaths.private + 'Sass/**/*.scss',
-        dest: basePaths.public + 'Styles',
+        src: paths.private + 'Sass/**/*.scss',
+        dest: paths.public + 'Styles',
         settings: {
             imagePath: 'Images' // Used by the image-url helper
         }
     },
     'images': {
-        src: basePaths.private + 'Images/*.{png,jpg,gif,svg}',
-        dest: basePaths.public + 'Images',
+        src: paths.private + 'Images/*.{png,jpg,gif,svg}',
+        dest: paths.public + 'Images',
         settings: {
             progressive: true,
             svgoPlugins: [{ 
@@ -25,12 +30,12 @@ packagesRepository.addPackage({
         }
     },
     'scripts': {
-        src: basePaths.private + 'Scripts/**/*.js',
-        dest: basePaths.public + 'Scripts',
+        src: paths.private + 'Scripts/**/*.js',
+        dest: paths.public + 'Scripts',
         bundles: [
             {
-                entries: './' + basePaths.packages + 'myPackage/' + basePaths.private + 'Scripts/App.js',
-                dest: './' + basePaths.packages + 'myPackage/' + basePaths.public + 'Scripts',
+                entries: './' + paths.packages + 'examplePackage/' + paths.private + 'Scripts/App.js',
+                dest: './' + paths.packages + 'examplePackage/' + paths.public + 'Scripts',
                 outputName: 'App.min.js'
             }
         ]

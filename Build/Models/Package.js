@@ -9,18 +9,20 @@ var requiredKeys = {
 	scripts: ['src', 'dest', 'bundles']
 };
 
-var Package = function(options) {
+var Package = function(obj) {
     'use strict';
 
+    var options = obj.options;
     var hasPackageOptionsRequiredAttributes = this.hasPackageOptionsRequiredAttributes(options);
 
-    if(hasPackageOptionsRequiredAttributes) {	  	
-		this.options = options;
+    this.repository = obj.repository;
+    this.options = options;
 
+    if(hasPackageOptionsRequiredAttributes) {
 		this.createTasks();
     }
 
-	return options;
+	return this;
 };
 Package.prototype.hasPackageOptionsRequiredAttributes = function(options) {
     'use strict';
@@ -54,10 +56,15 @@ Package.prototype.hasPackageOptionsRequiredAttributes = function(options) {
 Package.prototype.createTasks = function() {
 	'use strict';
 
-	gulp.task('somename', function() {
-		// Do stuff
-		console.log('yeo');
-	});
+    var tasks = this.repository.tasks;
+    var packageName = this.options.name;
+    var packageModel = this;
+
+    _.forEach(tasks, function(task, taskName) {
+        gulp.task(taskName + ':' + packageName, function() {
+            return task(packageModel);
+        });
+    });	
 };
 
 module.exports = Package;
