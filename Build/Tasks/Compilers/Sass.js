@@ -4,8 +4,10 @@ var autoprefixer = require('gulp-autoprefixer');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
 
-module.exports = function(package) {
-    var packageConfig = package.options;
+module.exports = function(packageModel) {
+    'use strict';
+
+    var packageConfig = packageModel.options;
 	var sassConfig = packageConfig.sass;
     var packageBasePath = packageConfig.basePath;
 

@@ -1,24 +1,24 @@
 var config = {
-    paths: {
-        packages: 'Web/typo3conf/ext/',
-        private: 'Resources/Private/',
-        public: 'Resources/Public/',
-        docs: 'Documentation/'
+    'paths': {
+        'packages': 'Web/typo3conf/ext/',
+        'private': 'Resources/Private/',
+        'public': 'Resources/Public/',
+        'docs': 'Documentation/'
     },
-    project: {
-        isInDevMode: true,
-        browserSupport: ['last 2 version', 'ie 9']
+    'project': {
+        'isInDevMode': true,
+        'browserSupport': ['last 2 version', 'ie 9']
     },
     
     // Configuration rules for http://jscs.info/
-    jscs: {
+    'jscs': {
         'esnext': true,
         'preset': 'google',
         'validateIndentation': null
     },
 
     // Configuration for https://github.com/doctyper/gulp-modernizr
-    modernizr: {
+    'modernizr': {
         'fileName': 'Modernizr.min.js',
         'destPath': 'Web/Modernizr/',
         'config': {
