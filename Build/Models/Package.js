@@ -58,13 +58,10 @@ Package.prototype.createTasks = function() {
 	'use strict';
 
     var tasks = this.repository.getTasks();
-    var packageName = this.options.name;
     var packageModel = this;
 
     _.forEach(tasks, function(taskFunction, taskName) {
-        gulp.task(taskName + ':' + packageName, function() {
-            return taskFunction(packageModel);
-        });
+        taskFunction(packageModel);
     });
 };
 

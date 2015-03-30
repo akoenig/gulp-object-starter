@@ -5,23 +5,27 @@ var paths = config.paths;
 
 // Tasks
 packagesRepository.addTask({
-    'compile:sass': require('./Tasks/Compilers/Sass.js')
+    'compile:sass': require('./Tasks/Compilers/Sass.js'),
+    'compile:scripts': require('./Tasks/Compilers/Scripts.js')
 });
 
 // Example Package Configuration
 packagesRepository.addPackage({
     'name': 'examplePackage',
     'basePath': paths.packages + 'examplePackage/',
+
     'sass': {
-        'src': paths.private + 'Sass/**/*.scss',
-        'dest': paths.public + 'Styles',
+        'src': paths.private + 'Sass/',
+        'dest': paths.public + 'Styles/',
+        'filePattern': '*.scss',
         'settings': {
             'imagePath': 'Images' // Used by the image-url helper
         }
     },
     'images': {
-        'src': paths.private + 'Images/*.{png,jpg,gif,svg}',
-        'dest': paths.public + 'Images',
+        'src': paths.private + 'Images/',
+        'dest': paths.public + 'Images/',
+        'filePattern': '*.{png,jpg,gif,svg}',
         'settings': {
             'progressive': true,
             'svgoPlugins': [{ 
@@ -30,13 +34,26 @@ packagesRepository.addPackage({
         }
     },
     'scripts': {
-        'src': paths.private + 'Scripts/**/*.js',
-        'dest': paths.public + 'Scripts',
+        'src': paths.private + 'Scripts/',
+        'dest': paths.public + 'Scripts/',
+        'filePattern': '*.js',
         'bundles': [
             {
-                'entries': './' + paths.packages + 'examplePackage/' + paths.private + 'Scripts/App.js',
-                'dest': './' + paths.packages + 'examplePackage/' + paths.public + 'Scripts',
-                'outputName': 'App.min.js'
+                'name': 'main',
+                'src': 'App.js',
+                'dest': 'App.min.js',
+                'options': {
+                    'external': ['lodash']
+                }
+            }, 
+            {
+                'name': 'vendor',
+                'src': null,
+                'dest': 'Vendor.min.js',
+                'options': {
+                    'external': null,
+                    'require': ['lodash']
+                }
             }
         ]
     }

@@ -3,26 +3,51 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config');
-var packagesRepository = require('./../../Packages.js');
-var packages = packagesRepository.getPackages();
 
-gulp.task('compile:scripts', function() {
+module.exports = function(packageModel) {
     'use strict';
 
-    packages.forEach(function(packageConfig) {
-        var scriptsConfig = packageConfig.scripts;
-        var bundles = scriptsConfig.bundles;
+    var packageConfig = packageModel.options;
+    var packageName = packageConfig.name;
+    var packageBasePath = packageConfig.basePath;
+    var scriptsConfig = packageConfig.scripts;
+    var bundles = scriptsConfig.bundles;
+    var srcBasePath = packageBasePath + scriptsConfig.src;
+    var destBasePath = packageBasePath + scriptsConfig.dest;
 
-        if(!scriptsConfig) {
-            return this;
-        }
+    if(!scriptsConfig) {
+        return this;
+    }
 
-        bundles.forEach(function(bundleConfig) {
-            return browserify(bundleConfig)
-                .bundle()
+    return bundles.forEach(function(bundle) {
+        var browserifyConfig = {
+            entries: bundle.src ? './' + srcBasePath + bundle.src : null,
+            dest: destBasePath,
+            outputName: bundle.dest,
+            transform: bundle.transform
+        };
+        var bundleOptions = bundle.options;
+
+        return gulp.task('compile:scripts:' + packageName + ':' + bundle.name, function() {
+            var b = browserify(browserifyConfig);
+
+            if(bundleOptions.external) {
+                b.external(bundleOptions.external);
+            }
+            if(bundleOptions.ignore) {
+                b.ignore(bundleOptions.ignore);
+            }
+            if(bundleOptions.exclude) {
+                b.exclude(bundleOptions.exclude);
+            }
+            if(bundleOptions.require) {
+                b.require(bundleOptions.require);
+            }
+
+            return b.bundle()
                 .on('error', Logger)
-                .pipe(source(bundleConfig.outputName))
-                .pipe(gulp.dest(bundleConfig.dest));
-        });
+                .pipe(source(browserifyConfig.outputName))
+                .pipe(gulp.dest(browserifyConfig.dest));
+        });       
     });
-});
+};
