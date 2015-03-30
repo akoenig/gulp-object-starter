@@ -60,7 +60,7 @@ Package.prototype.createTasks = function() {
     var tasks = this.repository.getTasks();
     var packageModel = this;
 
-    _.forEach(tasks, function(taskFunction, taskName) {
+    _.forEach(tasks, function(taskFunction) {
         taskFunction(packageModel);
     });
 };

@@ -4,10 +4,11 @@ var packagesRepository = new Packages();
 var paths = config.paths;
 
 // Tasks
-packagesRepository.addTask({
-    'compile:sass': require('./Tasks/Compilers/Sass.js'),
-    'compile:scripts': require('./Tasks/Compilers/Scripts.js')
-});
+packagesRepository.addTask([
+    require('./Tasks/Compilers/Sass.js'),
+    require('./Tasks/Compilers/Scripts.js'),
+    require('./Tasks/Compilers/Scripts.js')
+]);
 
 // Example Package Configuration
 packagesRepository.addPackage({
