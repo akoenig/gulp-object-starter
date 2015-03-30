@@ -5,7 +5,7 @@ var Packages = function() {
     'use strict';
 
 	this.models = [];
-	this.tasks = {};
+	this.taskFunctions = {};
 };
 Packages.prototype.addPackage = function(packageOptions) {
     'use strict';
@@ -30,7 +30,7 @@ Packages.prototype.addTask = function(tasks) {
     'use strict';
 
 	_.forEach(tasks, function(task, taskKey) {
-		this.tasks[taskKey] = task;
+		this.taskFunctions[taskKey] = task;
 	}.bind(this));
 
 	return this;
@@ -38,7 +38,7 @@ Packages.prototype.addTask = function(tasks) {
 Packages.prototype.getTasks = function() {
     'use strict';
 
-	return this.tasks;
+	return this.taskFunctions;
 };
 
 module.exports = Packages;

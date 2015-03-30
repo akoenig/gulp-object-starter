@@ -17,6 +17,7 @@ var Package = function(obj) {
 
     this.repository = obj.repository;
     this.options = options;
+    this.tasks
 
     if(hasPackageOptionsRequiredAttributes) {
 		this.createTasks();
@@ -56,15 +57,15 @@ Package.prototype.hasPackageOptionsRequiredAttributes = function(options) {
 Package.prototype.createTasks = function() {
 	'use strict';
 
-    var tasks = this.repository.tasks;
+    var tasks = this.repository.getTasks();
     var packageName = this.options.name;
     var packageModel = this;
 
-    _.forEach(tasks, function(task, taskName) {
+    _.forEach(tasks, function(taskFunction, taskName) {
         gulp.task(taskName + ':' + packageName, function() {
-            return task(packageModel);
+            return taskFunction(packageModel);
         });
-    });	
+    });
 };
 
 module.exports = Package;
