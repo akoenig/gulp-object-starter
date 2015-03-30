@@ -2,23 +2,23 @@ var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
-var packagesRepository = require('./../../Packages.js');
-var packages = packagesRepository.getPackages();
 
-gulp.task('compile:images', function() {
+module.exports = function(packageModel) {
     'use strict';
 
-    packages.forEach(function(packageConfig) {
-        var imagesConfig = packageConfig.images;
-        var packageBasePath = packageConfig.basePath;
+    var packageConfig = packageModel.options;
+    var packageName = packageConfig.name;
+    var packageBasePath = packageConfig.basePath;
+    var imagesConfig = packageConfig.images;
 
-        if(!imagesConfig) {
-            return this;
-        }
+    if(!imagesConfig) {
+        return this;
+    }
 
+    return gulp.task('compile:images:' + packageName, function() {
         return gulp.src(packageBasePath + imagesConfig.src)
             .pipe(imagemin(imagesConfig.settings))
             .on('error', Logger)
             .pipe(gulp.dest(packageBasePath + imagesConfig.dest));
     });
-});
+};
