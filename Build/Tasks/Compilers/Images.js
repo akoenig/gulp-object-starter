@@ -16,7 +16,7 @@ module.exports = function(packageModel) {
     }
 
     return gulp.task('compile:images:' + packageName, function() {
-        return gulp.src(packageBasePath + imagesConfig.src)
+        return gulp.src(packageBasePath + imagesConfig.src + imagesConfig.filePattern)
             .pipe(imagemin(imagesConfig.settings))
             .on('error', Logger)
             .pipe(gulp.dest(packageBasePath + imagesConfig.dest));
