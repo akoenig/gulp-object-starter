@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var Logger = require('./../../Utilities/Logger.js');
-var config = require('./../../Config');
+var config = require('./../../Config.js');
 
 module.exports = function(packageModel) {
     'use strict';

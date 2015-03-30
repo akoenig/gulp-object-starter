@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var config = require('./../Config');
+var config = require('./../Config.js');
 var packagesRepository = require('./../Packages.js');
 var packages = packagesRepository.getPackages();
 

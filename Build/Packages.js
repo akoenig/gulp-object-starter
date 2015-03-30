@@ -45,7 +45,7 @@ packagesRepository.addPackage({
                 'options': {
                     'external': ['lodash']
                 }
-            }, 
+            },
             {
                 'name': 'vendor',
                 'src': null,
