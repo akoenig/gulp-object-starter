@@ -58,10 +58,11 @@ Build.prototype.createParentTasks = function() {
 Build.prototype.createAdditionalTasks = function() {
 	'use strict';
 
-	var modernizrTask = require('./Tasks/Compilers/Modernizr.js');
-	var buildTask = require('./Tasks/Build.js');
-	var compressTask = require('./Tasks/Compress.js');
-	var lintTask = require('./Tasks/Lint.js');
+	require('./Tasks/Compilers/Modernizr.js');
+	require('./Tasks/Build.js');
+	require('./Tasks/Compress.js');
+	require('./Tasks/Lint.js');
+	require('./Tasks/Watch.js');
 };
 
 module.exports = function() {
