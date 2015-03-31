@@ -30,6 +30,12 @@ Build.prototype.addPackages = function(packageConfigs) {
 	}.bind(this));
 
 	this.createParentTasks();
+	this.createAdditionalTasks();
+};
+Build.prototype.getPackages = function() {
+	'use strict';
+
+	return this.packagesRepository.getPackages();
 };
 
 Build.prototype.createParentTasks = function() {
@@ -42,6 +48,12 @@ Build.prototype.createParentTasks = function() {
 	createParentTasks(tasksArray, 'compile:sass');
 	createParentTasks(tasksArray, 'compile:images');
 	createParentTasks(tasksArray, 'compile:scripts');
+};
+
+Build.prototype.createAdditionalTasks = function() {
+	'use strict';
+
+	var modernizrTask = require('./Tasks/Compilers/Modernizr.js');
 };
 
 module.exports = function() {

@@ -23,7 +23,7 @@ var config = {
 
 	// Configuration for https://github.com/doctyper/gulp-modernizr
 	'modernizr': {
-		'fileName': 'Modernizr.min.js',
+		'fileName': 'Modernizr.js',
 		'destPath': 'Web/Modernizr/',
 		'config': {
 			// Based on default settings on http://modernizr.com/download/

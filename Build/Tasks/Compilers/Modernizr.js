@@ -2,8 +2,7 @@ var gulp = require('gulp');
 var modernizr = require('gulp-modernizr');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
-var packagesRepository = require('./../../Packages.js');
-var packages = packagesRepository.getPackages();
+var packages = require('./../../Index.js').getPackages();
 var modernizrConfig = config.modernizr;
 
 gulp.task('compile:modernizr', function() {
@@ -11,20 +10,22 @@ gulp.task('compile:modernizr', function() {
 
 	var searchPaths = [];
 
-	packages.forEach(function(packageConfig) {
+	packages.forEach(function(packageModel) {
+		var packageConfig = packageModel.options;
+		var packageBasePath = packageConfig.basePath;
 		var sassConfig = packageConfig.sass;
 		var scriptsConfig = packageConfig.scripts;
 
 		if(sassConfig) {
-			searchPaths.push(packageConfig.basePath + sassConfig.src);
+			searchPaths.push(packageBasePath + sassConfig.src + sassConfig.filePattern);
 		}
 
 		if(scriptsConfig) {
-			searchPaths.push(packageConfig.basePath + scriptsConfig.src);
+			searchPaths.push(packageBasePath + scriptsConfig.src + scriptsConfig.filePattern);
 		}
 	});
 
-	gulp.src(searchPaths)
+	return gulp.src(searchPaths)
 		.pipe(modernizr(modernizrConfig.fileName, modernizrConfig.config))
 		.on('error', Logger)
 		.pipe(gulp.dest(modernizrConfig.destPath))
