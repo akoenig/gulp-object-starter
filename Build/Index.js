@@ -61,6 +61,7 @@ Build.prototype.createAdditionalTasks = function() {
 	var modernizrTask = require('./Tasks/Compilers/Modernizr.js');
 	var buildTask = require('./Tasks/Build.js');
 	var compressTask = require('./Tasks/Compress.js');
+	var lintTask = require('./Tasks/Lint.js');
 };
 
 module.exports = function() {
