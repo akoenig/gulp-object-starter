@@ -6,20 +6,20 @@ var packagesRepository = require('./../Packages.js');
 var packages = packagesRepository.getPackages();
 
 gulp.task('lint', function() {
-    'use strict';
+	'use strict';
 
-    var scriptPaths = [];
+	var scriptPaths = [];
 
-    packages.forEach(function(packageConfig) {
-        var scriptsConfig = packageConfig.scripts;
+	packages.forEach(function(packageConfig) {
+		var scriptsConfig = packageConfig.scripts;
 
-        if(scriptsConfig) {
-            scriptPaths.push(packageConfig.basePath + scriptsConfig.src);
-        }
-    });
+		if(scriptsConfig) {
+			scriptPaths.push(packageConfig.basePath + scriptsConfig.src);
+		}
+	});
 
-    return gulp.src(scriptPaths)
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jscs(config.jscs));
+	return gulp.src(scriptPaths)
+		.pipe(jshint())
+		.pipe(jshint.reporter('jshint-stylish'))
+		.pipe(jscs(config.jscs));
 });

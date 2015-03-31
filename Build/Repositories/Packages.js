@@ -2,13 +2,13 @@ var Package = require('./../Models/Package.js');
 var _ = require('lodash');
 
 var Packages = function() {
-    'use strict';
+	'use strict';
 
 	this.models = [];
 	this.taskFunctions = [];
 };
 Packages.prototype.addPackage = function(packageOptions) {
-    'use strict';
+	'use strict';
 
 	var config = _.extend({}, {
 		options: packageOptions
@@ -22,12 +22,12 @@ Packages.prototype.addPackage = function(packageOptions) {
 	return newPackage;
 };
 Packages.prototype.getPackages = function() {
-    'use strict';
+	'use strict';
 
 	return this.models;
 };
 Packages.prototype.addTask = function(tasks) {
-    'use strict';
+	'use strict';
 
 	_.forEach(tasks, function(task) {
 		this.taskFunctions.push(task);
@@ -36,7 +36,7 @@ Packages.prototype.addTask = function(tasks) {
 	return this;
 };
 Packages.prototype.getTasks = function() {
-    'use strict';
+	'use strict';
 
 	return this.taskFunctions;
 };

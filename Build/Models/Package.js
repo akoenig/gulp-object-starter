@@ -10,59 +10,60 @@ var requiredKeys = {
 };
 
 var Package = function(obj) {
-    'use strict';
+	'use strict';
 
-    var options = obj.options;
-    var hasPackageOptionsRequiredAttributes = this.hasPackageOptionsRequiredAttributes(options);
+	var options = obj.options;
+	var hasPackageOptionsRequiredAttributes = this.hasPackageOptionsRequiredAttributes(options);
 
-    this.repository = obj.repository;
-    this.options = options;
-    this.tasks
+	this.repository = obj.repository;
+	this.options = options;
 
-    if(hasPackageOptionsRequiredAttributes) {
+	if(hasPackageOptionsRequiredAttributes) {
 		this.createTasks();
-    }
+	}
 
 	return this;
 };
 Package.prototype.hasPackageOptionsRequiredAttributes = function(options) {
-    'use strict';
+	'use strict';
 
-    var hasRequiredAttributes = true;
-    var messageSuffix = ' while creating a new Package instance in ./Build/Config.js.';
+	var hasRequiredAttributes = true;
+	var messageSuffix = ' while creating a new Package instance in ./Build/Config.js.';
 
-    if(!options) {
-    	throw new Error('Please set an options object' + messageSuffix)
-    }
+	if(!options) {
+		throw new Error('Please set an options object' + messageSuffix)
+	}
 
-    _.forEach(options, function(value, key) {
-    	var isConfigurationObj = _.isObject(value);
-    	var testResults;
-    	var isConfigurationObjValid = true;
+	_.forEach(options, function(value, key) {
+		var isConfigurationObj = _.isObject(value);
+		var testResults;
+		var isConfigurationObjValid = true;
 
-    	if(isConfigurationObj) {
-    		testResults = hasObjectRequiredKeys(value, requiredKeys[key]);
-    		isConfigurationObjValid = testResults.result
-    	}
+		if(isConfigurationObj) {
+			testResults = hasObjectRequiredKeys(value, requiredKeys[key]);
+			isConfigurationObjValid = testResults.result
+		}
 
-    	if(!isConfigurationObjValid) {
-    		hasRequiredAttributes = false;
-    		throw new Error('Option "' + testResults.missingKey + '" was not found in the "' + key + '" object' + messageSuffix);
-    	}
-    });
+		if(!isConfigurationObjValid) {
+			hasRequiredAttributes = false;
+			throw new Error('Option "' + testResults.missingKey + '" was not found in the "' + key + '" object' + messageSuffix);
+		}
+	});
 
-    return hasRequiredAttributes;
+	return hasRequiredAttributes;
 };
 
 Package.prototype.createTasks = function() {
 	'use strict';
 
-    var tasks = this.repository.getTasks();
-    var packageModel = this;
+	var tasks = this.repository.getTasks();
+	var packageModel = this;
 
-    _.forEach(tasks, function(taskFunction) {
-        taskFunction(packageModel);
-    });
+	_.forEach(tasks, function(taskFunction) {
+		taskFunction(packageModel);
+	});
+
+	return this;
 };
 
 module.exports = Package;
