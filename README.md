@@ -24,8 +24,19 @@ npm install
 ```
 Once all dependencies are installed properly, copy the example `PackageConfig.js` into your package root, and adjust the paths settings. Afterwards pass the config in the `Gulptfile.js` to the `build.addPackages()` method.
 
-### Tasks
-**ToDo**
+## Tasks
+| Task name                    | description                                                                                                                       |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| build                        | Starts a complete re-compilation of all packages via `gulp compile:sass compile:scripts`.                                         |
+| compile:sass                 | A Super-Task which compiles each configured sass package with [node-sass](https://github.com/sass/node-sass).                     |
+| compile:scripts              | A Super-Task which compiles each configured scripts package with [browserify](http://browserify.org/).                            |
+| compile:modernizr            | Creates a lean modernizr build with [gulp-modernizr](https://github.com/doctyper/gulp-modernizr).                                 |
+| minify                       | Starts a minification process for each package via `gulp minify:scripts minify:styles minify:images`.                             |
+| minify:styles                | A Super-Task which minifies each configured sass package with [Minify-css](https://github.com/jonathanepollack/gulp-minify-css).  |
+| minify:scripts               | A Super-Task which minifies each configured scripts package with [UglifyJS2](https://github.com/mishoo/UglifyJS2).                |
+| minify:images                | A Super-Task which minifies each configured images package with [Imagemin](https://github.com/imagemin/imagemin).                 |
+| lint                         | Lints each package for JS errors/style violations via [ESLint](http://eslint.org/) and [JSCS](http://jscs.info/).                 |
+| watch                        | Creates a watcher for each configured scripts/sass package, and re-runs the compile task on each save.                            |
 
 
 ## Contributing
