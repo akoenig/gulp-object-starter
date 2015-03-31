@@ -60,7 +60,7 @@ Build.prototype.createAdditionalTasks = function() {
 
 	require('./Tasks/Compilers/Modernizr.js');
 	require('./Tasks/Build.js');
-	require('./Tasks/Compress.js');
+	require('./Tasks/Minify.js');
 	require('./Tasks/Lint.js');
 	require('./Tasks/Watch.js');
 };
