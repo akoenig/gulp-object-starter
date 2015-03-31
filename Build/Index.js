@@ -54,6 +54,7 @@ Build.prototype.createAdditionalTasks = function() {
 	'use strict';
 
 	var modernizrTask = require('./Tasks/Compilers/Modernizr.js');
+	var buildTask = require('./Tasks/Build.js');
 };
 
 module.exports = function() {
