@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var gulp = require('gulp');
+var config = require('./../Config.js');
 
 module.exports = function(tasksArray, taskNameToCreate) {
 	'use strict';
@@ -16,6 +17,7 @@ module.exports = function(tasksArray, taskNameToCreate) {
 	});
 
 	if(tasksToRun.length) {
+		config.tasks.push(taskNameToCreate);
 		task = gulp.task(taskNameToCreate, tasksToRun);
 	}
 
