@@ -27,8 +27,11 @@ module.exports = function(packageModel) {
 			transform: bundle.transform
 		};
 		var bundleOptions = bundle.options;
+		var taskName = 'compile:scripts:' + packageName + ':' + bundle.name;
 
-		return gulp.task('compile:scripts:' + packageName + ':' + bundle.name, function() {
+		config.tasks.push(taskName);
+
+		return gulp.task(taskName, function() {
 			var b = browserify(browserifyConfig);
 
 			if(bundleOptions.external) {

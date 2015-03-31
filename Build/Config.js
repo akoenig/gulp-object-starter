@@ -1,10 +1,14 @@
 var config = {
+	// Empty tasks array which will be filled with the aviable taskNames on each gulp run.
+	'tasks': [],
+
 	'paths': {
 		'packages': 'Web/typo3conf/ext/',
 		'private': 'Resources/Private/',
 		'public': 'Resources/Public/',
 		'docs': 'Documentation/'
 	},
+
 	'project': {
 		'isInDevMode': true,
 		'browserSupport': ['last 2 versions', 'ie 9']

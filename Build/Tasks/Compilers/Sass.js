@@ -11,12 +11,15 @@ module.exports = function(packageModel) {
 	var packageName = packageConfig.name;
 	var packageBasePath = packageConfig.basePath;
 	var sassConfig = packageConfig.sass;
+	var taskName = 'compile:sass:' + packageName;
 
 	if(!sassConfig) {
 		return this;
 	}
 
-	return gulp.task('compile:sass:' + packageName, function() {
+	config.tasks.push(taskName);
+
+	return gulp.task(taskName, function() {
 		return gulp.src(packageBasePath + sassConfig.src + sassConfig.filePattern)
 			.pipe(sass(sassConfig.settings))
 			.on('error', Logger)
