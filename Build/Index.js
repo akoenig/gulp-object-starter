@@ -18,7 +18,7 @@ Build.prototype.createPackageBasedTasks = function() {
 	this.packagesRepository.addPackageTask([
 		require('./Tasks/Compilers/Sass.js'),
 		require('./Tasks/Compilers/Scripts.js'),
-		require('./Tasks/Compilers/Images.js'),
+		require('./Tasks/Compressors/Images.js'),
 		require('./Tasks/Compressors/Scripts.js'),
 		require('./Tasks/Compressors/Styles.js')
 	]);
@@ -48,9 +48,9 @@ Build.prototype.createParentTasks = function() {
 	// Create a task with the second argument, which runs every task which name inherits the second argument as a part of the name. F.e.
 	// createParentTasks(tasksArray, 'compile:sass'); -> gulp.task -> ['compile:sass:examplePackage1', 'compile:sass:examplePackage2']
 	createParentTasks(tasksArray, 'compile:sass');
-	createParentTasks(tasksArray, 'compile:images');
 	createParentTasks(tasksArray, 'compile:scripts');
 
+	createParentTasks(tasksArray, 'compress:images');
 	createParentTasks(tasksArray, 'compress:scripts');
 	createParentTasks(tasksArray, 'compress:styles');
 };

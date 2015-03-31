@@ -10,7 +10,7 @@ module.exports = function(packageModel) {
 	var packageName = packageConfig.name;
 	var packageBasePath = packageConfig.basePath;
 	var imagesConfig = packageConfig.images;
-	var taskName = 'compile:images:' + packageName;
+	var taskName = 'compress:images:' + packageName;
 
 	if(!imagesConfig) {
 		return this;
