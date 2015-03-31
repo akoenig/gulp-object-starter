@@ -22,8 +22,7 @@ Afterwards, execute the following command to install all gulp dependencies.
 ```shell
 npm install
 ```
-Once all dependencies are installed properly, you can run one of the following Tasks and/or configure your projects settings in the `Build/Config.js` file.
-
+Once all dependencies are installed properly, copy the example `PackageConfig.js` into your package root, and adjust the paths settings. Afterwards pass the config in the `Gulptfile.js` to the `build.addPackages()` method.
 
 ### Tasks
 **ToDo**
