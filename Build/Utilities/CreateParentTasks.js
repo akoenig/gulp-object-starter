@@ -5,6 +5,7 @@ module.exports = function(tasksArray, taskNameToCreate) {
 	'use strict';
 
 	var tasksToRun = [];
+	var task = null;
 
 	_.forEach(tasksArray, function(taskName) {
 		var isTaskNameRelevant = taskName.indexOf(taskNameToCreate) >= 0;
@@ -14,5 +15,9 @@ module.exports = function(tasksArray, taskNameToCreate) {
 		}
 	});
 
-	return gulp.task(taskNameToCreate, tasksToRun);
+	if(tasksToRun.length) {
+		task = gulp.task(taskNameToCreate, tasksToRun);
+	}
+
+	return task;
 };

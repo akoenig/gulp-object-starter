@@ -13,7 +13,7 @@ packagesRepository.addTask([
 // Setup the model, which will create it's tasks, based on the .addTask() method above.
 packagesRepository.addPackage(require('./../Web/typo3conf/ext/examplePackage/BuildConfig.js'));
 
-// ToDo: Setup general tasks which aren't depending on a single package.
+// Setup general tasks which aren't depending on a single package.
 tasksArray = require('./Config.js').tasks;
 
 // Create a task with the second argument, which runs every task which name inherits the second argument as a part of the name. F.e.
