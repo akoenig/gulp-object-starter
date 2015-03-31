@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('compress', ['compress:scripts', 'compress:styles', 'compress:images']);
+gulp.task('compress', ['minify:scripts', 'minify:styles', 'minify:images']);

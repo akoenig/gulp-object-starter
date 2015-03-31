@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var uglify = require('gulp-uglify');
+var minifyCSS = require('gulp-minify-css');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
@@ -9,19 +9,19 @@ module.exports = function(packageModel) {
 	var packageConfig = packageModel.options;
 	var packageName = packageConfig.name;
 	var packageBasePath = packageConfig.basePath;
-	var scriptsConfig = packageConfig.scripts;
-	var taskName = 'compress:scripts:' + packageName;
+	var sassConfig = packageConfig.sass;
+	var taskName = 'minify:styles:' + packageName;
 
-	if(!scriptsConfig) {
+	if(!sassConfig) {
 		return this;
 	}
 
 	config.tasks.push(taskName);
 
 	return gulp.task(taskName, function() {
-		return gulp.src(packageBasePath + scriptsConfig.dest + '/**/*.js')
-			.pipe(uglify())
+		return gulp.src(packageBasePath + sassConfig.dest + '/**/*.css')
+			.pipe(minifyCSS())
 			.on('error', Logger)
-			.pipe(gulp.dest(packageBasePath + scriptsConfig.dest));
+			.pipe(gulp.dest(packageBasePath + sassConfig.dest));
 	});
 };

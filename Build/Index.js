@@ -18,9 +18,9 @@ Build.prototype.createPackageBasedTasks = function() {
 	this.packagesRepository.addPackageTask([
 		require('./Tasks/Compilers/Sass.js'),
 		require('./Tasks/Compilers/Scripts.js'),
-		require('./Tasks/Compressors/Images.js'),
-		require('./Tasks/Compressors/Scripts.js'),
-		require('./Tasks/Compressors/Styles.js')
+		require('./Tasks/Minifiers/Images.js'),
+		require('./Tasks/Minifiers/Scripts.js'),
+		require('./Tasks/Minifiers/Styles.js')
 	]);
 };
 
@@ -50,9 +50,9 @@ Build.prototype.createParentTasks = function() {
 	createParentTasks(tasksArray, 'compile:sass');
 	createParentTasks(tasksArray, 'compile:scripts');
 
-	createParentTasks(tasksArray, 'compress:images');
-	createParentTasks(tasksArray, 'compress:scripts');
-	createParentTasks(tasksArray, 'compress:styles');
+	createParentTasks(tasksArray, 'minify:images');
+	createParentTasks(tasksArray, 'minify:scripts');
+	createParentTasks(tasksArray, 'minify:styles');
 };
 
 Build.prototype.createAdditionalTasks = function() {
