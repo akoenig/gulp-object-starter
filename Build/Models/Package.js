@@ -56,7 +56,7 @@ Package.prototype.hasPackageOptionsRequiredAttributes = function(options) {
 Package.prototype.createTasks = function() {
 	'use strict';
 
-	var tasks = this.repository.getTasks();
+	var tasks = this.repository.getPackageTasks();
 	var packageModel = this;
 
 	_.forEach(tasks, function(taskFunction) {

@@ -3,7 +3,7 @@ var Packages = require('./Repositories/Packages.js');
 var createParentTasks = require('./Utilities/CreateParentTasks.js');
 var singleton;
 
-var Starter = function() {
+var Build = function() {
 	'use strict';
 
 	this.packagesRepository = new Packages();
@@ -11,18 +11,18 @@ var Starter = function() {
 	this.createPackageBasedTasks();
 };
 
-Starter.prototype.createPackageBasedTasks = function() {
+Build.prototype.createPackageBasedTasks = function() {
 	'use strict';
 
 	// Setup tasks which are re-created for each package.
-	this.packagesRepository.addTask([
+	this.packagesRepository.addPackageTask([
 		require('./Tasks/Compilers/Sass.js'),
 		require('./Tasks/Compilers/Scripts.js'),
 		require('./Tasks/Compilers/Images.js')
 	]);
 };
 
-Starter.prototype.addPackages = function(packageConfigs) {
+Build.prototype.addPackages = function(packageConfigs) {
 	'use strict';
 
 	_.forEach(packageConfigs, function(packageConfig) {
@@ -32,7 +32,7 @@ Starter.prototype.addPackages = function(packageConfigs) {
 	this.createParentTasks();
 };
 
-Starter.prototype.createParentTasks = function() {
+Build.prototype.createParentTasks = function() {
 	'use strict';
 
 	var tasksArray = require('./Config.js').tasks;
@@ -45,7 +45,7 @@ Starter.prototype.createParentTasks = function() {
 };
 
 module.exports = function() {
-	singleton = singleton || new Starter();
+	singleton = singleton || new Build();
 
 	return singleton;
 }();

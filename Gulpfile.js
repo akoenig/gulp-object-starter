@@ -1,5 +1,5 @@
-var starter = require('./Build/Index.js');
+var build = require('./Build/Index.js');
 
-starter.addPackages([
+build.addPackages([
 	require('./Web/typo3conf/ext/examplePackage/BuildConfig.js')
-])
+]);

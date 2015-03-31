@@ -26,7 +26,7 @@ Packages.prototype.getPackages = function() {
 
 	return this.models;
 };
-Packages.prototype.addTask = function(tasks) {
+Packages.prototype.addPackageTask = function(tasks) {
 	'use strict';
 
 	_.forEach(tasks, function(task) {
@@ -35,7 +35,7 @@ Packages.prototype.addTask = function(tasks) {
 
 	return this;
 };
-Packages.prototype.getTasks = function() {
+Packages.prototype.getPackageTasks = function() {
 	'use strict';
 
 	return this.taskFunctions;
