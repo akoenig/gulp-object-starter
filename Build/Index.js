@@ -1,7 +1,5 @@
 var Packages = require('./Repositories/Packages.js');
-var config = require('./Config.js');
 var packagesRepository = new Packages();
-var paths = config.paths;
 
 packagesRepository.addTask([
 	require('./Tasks/Compilers/Sass.js'),
