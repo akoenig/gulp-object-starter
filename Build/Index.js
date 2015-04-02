@@ -63,6 +63,7 @@ Build.prototype.createAdditionalTasks = function() {
 	require('./Tasks/Minify.js');
 	require('./Tasks/Lint.js');
 	require('./Tasks/Watch.js');
+	require('./Tasks/Default.js');
 };
 
 module.exports = function() {
