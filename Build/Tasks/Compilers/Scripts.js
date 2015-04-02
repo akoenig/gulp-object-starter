@@ -29,7 +29,7 @@ module.exports = function(packageModel) {
 			outputName: bundle.dest,
 			transform: bundle.transform
 		};
-		var bundleOptions = bundle.options;
+		var bundleSettings = bundle.settings;
 		var taskName = 'compile:scripts:' + packageName + ':' + bundle.name;
 
 		config.tasks.push(taskName);
@@ -37,17 +37,17 @@ module.exports = function(packageModel) {
 		return gulp.task(taskName, function() {
 			var b = browserify(browserifyConfig);
 
-			if(bundleOptions.external) {
-				b.external(bundleOptions.external);
+			if(bundleSettings.external) {
+				b.external(bundleSettings.external);
 			}
-			if(bundleOptions.ignore) {
-				b.ignore(bundleOptions.ignore);
+			if(bundleSettings.ignore) {
+				b.ignore(bundleSettings.ignore);
 			}
-			if(bundleOptions.exclude) {
-				b.exclude(bundleOptions.exclude);
+			if(bundleSettings.exclude) {
+				b.exclude(bundleSettings.exclude);
 			}
-			if(bundleOptions.require) {
-				b.require(bundleOptions.require);
+			if(bundleSettings.require) {
+				b.require(bundleSettings.require);
 			}
 
 			return b.bundle()

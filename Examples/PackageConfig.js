@@ -63,8 +63,8 @@ module.exports = {
                 // The outName for browserify, relative to the dest path described above.
                 'dest': 'App.min.js',
 
-                // Additional options for browserify.
-                'options': {
+                // Additional settings for browserify.
+                'settings': {
                     'external': ['lodash']
                 }
             },
@@ -72,7 +72,7 @@ module.exports = {
                 'name': 'vendor',
                 'src': null,
                 'dest': 'Vendor.min.js',
-                'options': {
+                'settings': {
                     'external': null,
                     'require': ['lodash']
                 }
