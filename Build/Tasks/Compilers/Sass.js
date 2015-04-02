@@ -1,8 +1,5 @@
 var gulp = require('gulp');
-var gulpif = require('gulp-if');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var minifyCSS = require('gulp-minify-css');
+var plugins = require('gulp-load-plugins')();
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
@@ -23,13 +20,13 @@ module.exports = function(packageModel) {
 
 	return gulp.task(taskName, function() {
 		return gulp.src(packageBasePath + sassConfig.src + sassConfig.filePattern)
-			.pipe(sass(sassConfig.settings))
+			.pipe(plugins.sass(sassConfig.settings))
 			.on('error', Logger)
-			.pipe(autoprefixer({
+			.pipe(plugins.autoprefixer({
 				browsers: config.project.browserSupport
 			}))
 			.on('error', Logger)
-			.pipe(gulpif(config.project.isInLiveMode, minifyCSS()))
+			.pipe(plugins.if(config.project.isInLiveMode, plugins.minifyCss()))
 			.pipe(gulp.dest(packageBasePath + sassConfig.dest));
 	});
 };

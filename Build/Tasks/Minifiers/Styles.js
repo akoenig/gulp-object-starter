@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var minifyCSS = require('gulp-minify-css');
+var plugins = require('gulp-load-plugins')();
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
@@ -20,7 +20,7 @@ module.exports = function minifyStyles(packageModel) {
 
 	return gulp.task(taskName, function() {
 		return gulp.src(packageBasePath + sassConfig.dest + '/**/*.css')
-			.pipe(minifyCSS())
+			.pipe(plugins.minifyCss())
 			.on('error', Logger)
 			.pipe(gulp.dest(packageBasePath + sassConfig.dest));
 	});

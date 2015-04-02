@@ -1,9 +1,8 @@
 var gulp = require('gulp');
-var gulpif = require('gulp-if');
+var plugins = require('gulp-load-plugins')();
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
@@ -54,7 +53,7 @@ module.exports = function(packageModel) {
 				.on('error', Logger)
 				.pipe(source(browserifyConfig.outputName))
 				.pipe(buffer())
-				.pipe(gulpif(config.project.isInLiveMode, uglify()))
+				.pipe(plugins.if(config.project.isInLiveMode, plugins.uglify()))
 				.pipe(gulp.dest(browserifyConfig.dest));
 		});
 	});

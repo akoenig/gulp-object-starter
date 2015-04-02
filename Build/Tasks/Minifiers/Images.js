@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var imagemin = require('gulp-imagemin');
+var plugins = require('gulp-load-plugins')();
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
@@ -20,7 +20,7 @@ module.exports = function minifyImages(packageModel) {
 
 	return gulp.task(taskName, function() {
 		return gulp.src(packageBasePath + imagesConfig.src + imagesConfig.filePattern)
-			.pipe(imagemin(imagesConfig.settings))
+			.pipe(plugins.imagemin(imagesConfig.settings))
 			.on('error', Logger)
 			.pipe(gulp.dest(packageBasePath + imagesConfig.dest));
 	});

@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var modernizr = require('gulp-modernizr');
+var plugins = require('gulp-load-plugins')();
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 var packages = require('./../../Index.js').getPackages();
@@ -26,7 +26,7 @@ gulp.task('compile:modernizr', function() {
 	});
 
 	return gulp.src(searchPaths)
-		.pipe(modernizr(modernizrConfig.fileName, modernizrConfig.config))
+		.pipe(plugins.modernizr(modernizrConfig.fileName, modernizrConfig.config))
 		.on('error', Logger)
 		.pipe(gulp.dest(modernizrConfig.destPath))
 });

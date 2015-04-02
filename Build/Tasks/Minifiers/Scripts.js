@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var uglify = require('gulp-uglify');
+var plugins = require('gulp-load-plugins')();
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
@@ -20,7 +20,7 @@ module.exports = function minifyScripts(packageModel) {
 
 	return gulp.task(taskName, function() {
 		return gulp.src(packageBasePath + scriptsConfig.dest + '/**/*.js')
-			.pipe(uglify())
+			.pipe(plugins.uglify())
 			.on('error', Logger)
 			.pipe(gulp.dest(packageBasePath + scriptsConfig.dest));
 	});

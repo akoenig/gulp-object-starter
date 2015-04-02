@@ -1,6 +1,5 @@
 var gulp = require('gulp');
-var eslint = require('gulp-eslint');
-var jscs = require('gulp-jscs');
+var plugins = require('gulp-load-plugins')();
 var Logger = require('./../Utilities/Logger.js');
 var esLintConfig = require('./../.ESLintConfig');
 var config = require('./../Config.js');
@@ -21,9 +20,9 @@ gulp.task('lint', function lint() {
 	});
 
 	return gulp.src(scriptPaths)
-		.pipe(eslint(esLintConfig))
-		.pipe(eslint.format())
+		.pipe(plugins.eslint(esLintConfig))
+		.pipe(plugins.eslint.format())
 		.on('error', Logger)
-		.pipe(jscs(config.jscs))
+		.pipe(plugins.jscs(config.jscs))
 		.on('error', Logger);
 });
