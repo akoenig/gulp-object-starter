@@ -9,7 +9,7 @@ var requiredKeys = {
 	scripts: ['src', 'dest', 'bundles']
 };
 
-var Package = function(obj) {
+var Package = function Package(obj) {
 	'use strict';
 
 	var options = obj.options;

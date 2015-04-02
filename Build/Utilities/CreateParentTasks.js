@@ -2,7 +2,7 @@ var _ = require('lodash');
 var gulp = require('gulp');
 var config = require('./../Config.js');
 
-module.exports = function(tasksArray, taskNameToCreate) {
+module.exports = function createParentTasks(tasksArray, taskNameToCreate) {
 	'use strict';
 
 	var tasksToRun = [];

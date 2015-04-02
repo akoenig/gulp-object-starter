@@ -1,4 +1,4 @@
-var hasObjectRequiredKeys = function(obj, requiredKeysArray) {
+module.exports = function hasObjectRequiredKeys(obj, requiredKeysArray) {
 	var returnVal = {
 		result: true
 	};
@@ -18,5 +18,3 @@ var hasObjectRequiredKeys = function(obj, requiredKeysArray) {
 
 	return returnVal;
 };
-
-module.exports = hasObjectRequiredKeys;

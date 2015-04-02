@@ -3,7 +3,7 @@ var imagemin = require('gulp-imagemin');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
-module.exports = function(packageModel) {
+module.exports = function minifyImages(packageModel) {
 	'use strict';
 
 	var packageConfig = packageModel.options;

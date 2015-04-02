@@ -1,7 +1,7 @@
 var Package = require('./../Models/Package.js');
 var _ = require('lodash');
 
-var Packages = function() {
+var Packages = function Packages() {
 	'use strict';
 
 	this.models = [];

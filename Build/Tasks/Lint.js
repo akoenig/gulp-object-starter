@@ -6,7 +6,7 @@ var esLintConfig = require('./../.ESLintConfig');
 var config = require('./../Config.js');
 var packages = require('./../Index.js').getPackages();
 
-gulp.task('lint', function() {
+gulp.task('lint', function lint() {
 	'use strict';
 
 	var scriptPaths = [];

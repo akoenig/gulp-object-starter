@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var config = require('./../Config.js');
 var packages = require('./../Index.js').getPackages();
 
-gulp.task('watch', function() {
+gulp.task('watch', function watch() {
 	'use strict';
 
 	var sassPaths = [];

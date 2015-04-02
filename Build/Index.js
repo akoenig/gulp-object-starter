@@ -3,7 +3,7 @@ var Packages = require('./Repositories/Packages.js');
 var createParentTasks = require('./Utilities/CreateParentTasks.js');
 var singleton;
 
-var Build = function() {
+var Build = function Build() {
 	'use strict';
 
 	this.packagesRepository = new Packages();

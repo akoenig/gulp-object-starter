@@ -1,6 +1,6 @@
 var notify = require("gulp-notify");
 
-module.exports = function() {
+module.exports = function Logger() {
 	'use strict';
 
 	var args = Array.prototype.slice.call(arguments);

@@ -3,7 +3,7 @@ var minifyCSS = require('gulp-minify-css');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
-module.exports = function(packageModel) {
+module.exports = function minifyStyles(packageModel) {
 	'use strict';
 
 	var packageConfig = packageModel.options;
