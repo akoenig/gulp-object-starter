@@ -28,7 +28,7 @@ Package.prototype.hasOptionsRequiredAttributes = function(options) {
 	'use strict';
 
 	var hasRequiredAttributes = true;
-	var messageSuffix = ' while creating a new Package instance in ./Build/Config.js.';
+	var messageSuffix = ' while creating a new Package instance.';
 
 	if(!options) {
 		throw new Error('Please set an options object' + messageSuffix)
