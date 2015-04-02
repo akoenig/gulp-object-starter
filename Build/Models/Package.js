@@ -13,18 +13,18 @@ var Package = function(obj) {
 	'use strict';
 
 	var options = obj.options;
-	var hasPackageOptionsRequiredAttributes = this.hasPackageOptionsRequiredAttributes(options);
+	var hasOptionsRequiredAttributes = this.hasOptionsRequiredAttributes(options);
 
 	this.repository = obj.repository;
 	this.options = options;
 
-	if(hasPackageOptionsRequiredAttributes) {
+	if(hasOptionsRequiredAttributes) {
 		this.createTasks();
 	}
 
 	return this;
 };
-Package.prototype.hasPackageOptionsRequiredAttributes = function(options) {
+Package.prototype.hasOptionsRequiredAttributes = function(options) {
 	'use strict';
 
 	var hasRequiredAttributes = true;
