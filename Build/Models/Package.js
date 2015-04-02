@@ -4,9 +4,9 @@ var hasObjectRequiredKeys = require('./../Utilities/HasObjectRequiredKeys.js')
 
 var requiredKeys = {
 	primaries: ['basePath', 'name'],
-	sass: ['src', 'dest'],
-	images: ['src', 'dest', 'settings'],
-	scripts: ['src', 'dest', 'bundles']
+	sass: ['src', 'dest', 'filePattern'],
+	images: ['src', 'dest', 'filePattern', 'settings'],
+	scripts: ['src', 'dest', 'filePattern', 'bundles']
 };
 
 var Package = function Package(obj) {
@@ -36,8 +36,8 @@ Package.prototype.hasOptionsRequiredAttributes = function(options) {
 
 	_.forEach(options, function(value, key) {
 		var isConfigurationObj = _.isObject(value);
-		var testResults;
 		var isConfigurationObjValid = true;
+		var testResults;
 
 		if(isConfigurationObj) {
 			testResults = hasObjectRequiredKeys(value, requiredKeys[key]);
