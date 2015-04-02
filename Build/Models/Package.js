@@ -1,38 +1,69 @@
+var gulp = require('gulp');
+var _ = require('lodash');
+var hasObjectRequiredKeys = require('./../Utilities/HasObjectRequiredKeys.js')
+
 var requiredKeys = {
-	basics: ['basePath'],
+	primaries: ['basePath', 'name'],
 	sass: ['src', 'dest'],
 	images: ['src', 'dest', 'settings'],
 	scripts: ['src', 'dest', 'bundles']
 };
 
-var Package = function(options) {
+var Package = function(obj) {
+	'use strict';
 
-	// Check for required options before returning the package configuration.
-	this.validateKeys(requiredKeys.basics, options);
+	var options = obj.options;
+	var hasPackageOptionsRequiredAttributes = this.hasPackageOptionsRequiredAttributes(options);
 
-	// Sass property validation.
-	this.validateKeys(requiredKeys.sass, options.sass, 'sass');
+	this.repository = obj.repository;
+	this.options = options;
 
-	// Images property validation.
-	this.validateKeys(requiredKeys.images, options.images, 'scripts');
-
-	// Scripts property validation.
-	this.validateKeys(requiredKeys.scripts, options.scripts, 'scripts');
-
-	return options;
-};
-Package.prototype.validateKeys = function(requiredArray, targetObject, parentAttributeKeyName) {
-	if(!requiredArray || !targetObject) {
-		return;
+	if(hasPackageOptionsRequiredAttributes) {
+		this.createTasks();
 	}
 
-	requiredArray.forEach(function(key) {
-		var isKeyNotInOptions = !targetObject[key];
+	return this;
+};
+Package.prototype.hasPackageOptionsRequiredAttributes = function(options) {
+	'use strict';
 
-		if(isKeyNotInOptions) {
-			throw new Error('Option "' + key + '" was not found ' + ((parentAttributeKeyName) ? ('in the "' + parentAttributeKeyName + '" object ') : '') + 'while creating a new Package instance in the ./Build/Config.js');
+	var hasRequiredAttributes = true;
+	var messageSuffix = ' while creating a new Package instance in ./Build/Config.js.';
+
+	if(!options) {
+		throw new Error('Please set an options object' + messageSuffix)
+	}
+
+	_.forEach(options, function(value, key) {
+		var isConfigurationObj = _.isObject(value);
+		var testResults;
+		var isConfigurationObjValid = true;
+
+		if(isConfigurationObj) {
+			testResults = hasObjectRequiredKeys(value, requiredKeys[key]);
+			isConfigurationObjValid = testResults.result
+		}
+
+		if(!isConfigurationObjValid) {
+			hasRequiredAttributes = false;
+			throw new Error('Option "' + testResults.missingKey + '" was not found in the "' + key + '" object' + messageSuffix);
 		}
 	});
+
+	return hasRequiredAttributes;
+};
+
+Package.prototype.createTasks = function() {
+	'use strict';
+
+	var tasks = this.repository.getPackageTasks();
+	var packageModel = this;
+
+	_.forEach(tasks, function(taskFunction) {
+		taskFunction(packageModel);
+	});
+
+	return this;
 };
 
 module.exports = Package;

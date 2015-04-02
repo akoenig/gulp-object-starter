@@ -1,6 +1,5 @@
-var requireDir = require('require-dir');
+var build = require('./Build/Index.js');
 
-// Require all Tasks in ./Build/Tasks
-requireDir('./Build/Tasks', {
-    recurse: true
-});
+build.addPackages([
+	require('./Examples/Packages/ExamplePackage/BuildConfig.js')
+]);

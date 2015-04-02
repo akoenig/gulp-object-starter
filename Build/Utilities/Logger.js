@@ -1,14 +1,16 @@
 var notify = require("gulp-notify");
 
-module.exports = function () {
-    var args = Array.prototype.slice.call(arguments);
+module.exports = function() {
+	'use strict';
 
-    // Send error to notification center with gulp-notify
-    notify.onError({
-        title: "Compile Error",
-        message: "<%= error %>"
-    }).apply(this, args);
+	var args = Array.prototype.slice.call(arguments);
 
-    // Keep gulp from hanging on this task
-    this.emit('end');
+	// Send error to notification center with gulp-notify
+	notify.onError({
+		title: 'Compile Error',
+		message: '<%= error %>'
+	}).apply(this, args);
+
+	// Keep gulp from hanging on this task
+	this.emit('end');
 };

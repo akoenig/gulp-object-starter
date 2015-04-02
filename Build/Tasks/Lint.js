@@ -1,21 +1,29 @@
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
+var eslint = require('gulp-eslint');
 var jscs = require('gulp-jscs');
-var config = require('./../Config');
+var Logger = require('./../Utilities/Logger.js');
+var esLintConfig = require('./../.ESLintConfig');
+var config = require('./../Config.js');
+var packages = require('./../Index.js').getPackages();
 
 gulp.task('lint', function() {
-    var scriptPaths = [];
+	'use strict';
 
-    config.packages.forEach(function(packageConfig) {
-        var scriptsConfig = packageConfig.scripts;
+	var scriptPaths = [];
 
-        if(scriptsConfig) {
-            scriptPaths.push(packageConfig.basePath + scriptsConfig.src);
-        }
-    });
+	packages.forEach(function(packageModel) {
+		var packageConfig = packageModel.options;
+		var scriptsConfig = packageConfig.scripts;
 
-    return gulp.src(scriptPaths)
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jscs(config.jscs));
+		if(scriptsConfig) {
+			scriptPaths.push(packageConfig.basePath + scriptsConfig.src + scriptsConfig.filePattern);
+		}
+	});
+
+	return gulp.src(scriptPaths)
+		.pipe(eslint(esLintConfig))
+		.pipe(eslint.format())
+		.on('error', Logger)
+		.pipe(jscs(config.jscs))
+		.on('error', Logger);
 });

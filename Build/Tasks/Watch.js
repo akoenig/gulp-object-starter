@@ -1,26 +1,28 @@
 var gulp = require('gulp');
-var config = require('./../Config');
-
+var config = require('./../Config.js');
+var packages = require('./../Index.js').getPackages();
 
 gulp.task('watch', function() {
-    var sassPaths = [];
-    var scriptPaths = [];
+	'use strict';
 
-    // Loop over each package and push the relevant paths to the referenced arrays.
-    config.packages.forEach(function(packageConfig) {
-        var packageBasePath = packageConfig.basePath;
-        var sassConfig = packageConfig.sass;
-        var scriptsConfig = packageConfig.scripts;
+	var sassPaths = [];
+	var scriptPaths = [];
 
-        if(sassConfig) {
-            sassPaths.push(packageBasePath + sassConfig.src);
-        }
+	packages.forEach(function(packageModel) {
+		var packageConfig = packageModel.options;
+		var packageBasePath = packageConfig.basePath;
+		var sassConfig = packageConfig.sass;
+		var scriptsConfig = packageConfig.scripts;
 
-        if(scriptsConfig) {
-            scriptPaths.push(packageBasePath + scriptsConfig.src)
-        }
-    });
+		if(sassConfig) {
+			sassPaths.push(packageBasePath + sassConfig.src + sassConfig.filePattern);
+		}
 
-    gulp.watch(sassPaths, ['compile:sass']);
-    gulp.watch(scriptPaths, ['compile:scripts']);
+		if(scriptsConfig) {
+			scriptPaths.push(packageBasePath + scriptsConfig.src + scriptsConfig.filePattern)
+		}
+	});
+
+	gulp.watch(sassPaths, ['compile:sass']);
+	gulp.watch(scriptPaths, ['compile:scripts']);
 });
