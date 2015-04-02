@@ -1,6 +1,8 @@
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
+var minifyCSS = require('gulp-minify-css');
 var Logger = require('./../../Utilities/Logger.js');
 var config = require('./../../Config.js');
 
@@ -27,6 +29,7 @@ module.exports = function(packageModel) {
 				browsers: config.project.browserSupport
 			}))
 			.on('error', Logger)
+			.pipe(gulpif(config.project.isInLiveMode, minifyCSS()))
 			.pipe(gulp.dest(packageBasePath + sassConfig.dest));
 	});
 };

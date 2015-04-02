@@ -10,7 +10,7 @@ var config = {
 	},
 
 	'project': {
-		'isInDevMode': true,
+		'isInLiveMode': true,
 		'browserSupport': ['last 2 versions', 'ie 9']
 	},
 
