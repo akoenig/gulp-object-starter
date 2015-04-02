@@ -46,7 +46,7 @@ Build.prototype.createParentTasks = function() {
 	var tasksArray = require('./Config.js').tasks;
 
 	// Create a task with the second argument, which runs every task which name inherits the second argument as a part of the name. F.e.
-	// createParentTasks(tasksArray, 'compile:sass'); -> gulp.task -> ['compile:sass:examplePackage1', 'compile:sass:examplePackage2']
+	// createParentTasks(tasksArray, 'compile:sass'); -> gulp.task('compile:sass') -> ['compile:sass:package1', 'compile:sass:package2']
 	createParentTasks(tasksArray, 'compile:sass');
 	createParentTasks(tasksArray, 'compile:scripts');
 
