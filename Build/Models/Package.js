@@ -1,54 +1,37 @@
 var gulp = require('gulp');
 var _ = require('lodash');
-var hasObjectRequiredKeys = require('./../Utilities/HasObjectRequiredKeys.js')
-
-var requiredKeys = {
-	primaries: ['basePath', 'name'],
-	sass: ['src', 'dest', 'filePattern'],
-	images: ['src', 'dest', 'filePattern', 'settings'],
-	scripts: ['src', 'dest', 'filePattern', 'bundles']
-};
+var hasObjectRequiredKeys = require('./../Utilities/HasObjectRequiredKeys.js');
+var errorMessageSuffix = ' while initiating a new Package, please refer to the example PackageConfig.js.';
+var requiredPrimaryKeys = ['basePath', 'name'];
 
 var Package = function Package(obj) {
 	'use strict';
 
 	var options = obj.options;
-	var hasOptionsRequiredAttributes = this.hasOptionsRequiredAttributes(options);
 
 	this.repository = obj.repository;
 	this.options = options;
 
-	if(hasOptionsRequiredAttributes) {
-		this.createTasks();
-	}
+	this.evaluteRequiredPackageKeys();
+	this.createTasks();
 
 	return this;
 };
-Package.prototype.hasOptionsRequiredAttributes = function(options) {
+
+Package.prototype.evaluteRequiredPackageKeys = function() {
 	'use strict';
 
-	var hasRequiredAttributes = true;
-	var messageSuffix = ' while creating a new Package instance.';
+	var options = this.options;
+	var testResults = hasObjectRequiredKeys(options, requiredPrimaryKeys);
+	var hasRequiredAttributes = testResults.result;
 
 	if(!options) {
-		throw new Error('Please set an options object' + messageSuffix)
+		throw new Error('Please set an options object' + errorMessageSuffix);
 	}
 
-	_.forEach(options, function(value, key) {
-		var isConfigurationObj = _.isObject(value);
-		var isConfigurationObjValid = true;
-		var testResults;
-
-		if(isConfigurationObj) {
-			testResults = hasObjectRequiredKeys(value, requiredKeys[key]);
-			isConfigurationObjValid = testResults.result
-		}
-
-		if(!isConfigurationObjValid) {
-			hasRequiredAttributes = false;
-			throw new Error('Option "' + testResults.missingKey + '" was not found in the "' + key + '" object' + messageSuffix);
-		}
-	});
+	if(!hasRequiredAttributes) {
+		throw new Error('Attribute "' + testResults.missingKey + '" was not found' + errorMessageSuffix);
+	}
 
 	return hasRequiredAttributes;
 };
@@ -56,11 +39,33 @@ Package.prototype.hasOptionsRequiredAttributes = function(options) {
 Package.prototype.createTasks = function() {
 	'use strict';
 
-	var tasks = this.repository.getPackageTasks();
 	var packageModel = this;
+	var options = this.options;
+	var tasks = this.repository.getPackageTasks();
 
-	_.forEach(tasks, function(taskFunction) {
-		taskFunction(packageModel);
+	_.forEach(tasks, function(taskExport) {
+		var hasRequiredKeys = _.isObject(taskExport) && taskExport.requiredKeysObject;
+		var taskFunction = taskExport;
+		var requiredKeysObject;
+		var hasRequiredAttributes = true;
+
+		if(hasRequiredKeys) {
+			taskFunction = taskExport.createTask;
+
+			_.forEach(taskExport.requiredKeysObject, function(requiredKeys, targetKey) {
+				var testResults = hasObjectRequiredKeys(options[targetKey], requiredKeys);
+
+				if(!testResults.result && testResults.missingKey && hasRequiredAttributes) {
+					hasRequiredAttributes = false;
+
+					throw new Error('Missing attribute "' + testResults.missingKey + '" in object "' + targetKey + '" ' + errorMessageSuffix);
+				}
+			});
+		}
+
+		if(hasRequiredAttributes) {
+			taskFunction(packageModel);
+		}
 	});
 
 	return this;
