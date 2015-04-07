@@ -46,7 +46,6 @@ Package.prototype.createTasks = function() {
 	_.forEach(tasks, function(taskExport) {
 		var hasRequiredKeys = _.isObject(taskExport) && taskExport.requiredKeysObject;
 		var taskFunction = taskExport;
-		var requiredKeysObject;
 		var hasRequiredAttributes = true;
 
 		if(hasRequiredKeys) {

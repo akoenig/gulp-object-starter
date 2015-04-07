@@ -1,4 +1,6 @@
 module.exports = function hasObjectRequiredKeys(obj, requiredKeysArray) {
+	'use strict';
+
 	var returnVal = {
 		result: true
 	};
