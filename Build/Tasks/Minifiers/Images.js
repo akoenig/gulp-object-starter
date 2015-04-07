@@ -20,8 +20,10 @@ module.exports = {
 			return this;
 		}
 
+		// Push the taskName which will be created, to an main array which holds all taskNames for the super-tasks/compiler (f.e. minify:images).
 		config.tasks.push(taskName);
 
+		// Create the sub-minifier task.
 		return gulp.task(taskName, function() {
 			return gulp.src(packageBasePath + imagesConfig.src + imagesConfig.filePattern)
 				.pipe(plugins.imagemin(imagesConfig.settings))

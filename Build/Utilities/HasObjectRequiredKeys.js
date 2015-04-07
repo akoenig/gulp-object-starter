@@ -1,3 +1,4 @@
+// Tests the structure of an Object for requiredKeys.
 module.exports = function hasObjectRequiredKeys(obj, requiredKeysArray) {
 	'use strict';
 

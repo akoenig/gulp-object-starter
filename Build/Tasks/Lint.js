@@ -10,6 +10,7 @@ gulp.task('lint', function lint() {
 
 	var scriptPaths = [];
 
+	// Loop over each pacakge, and push search paths, if the package has js sources.
 	packages.forEach(function(packageModel) {
 		var packageConfig = packageModel.options;
 		var scriptsConfig = packageConfig.scripts;
@@ -19,6 +20,7 @@ gulp.task('lint', function lint() {
 		}
 	});
 
+	// Kick-off the gulp-plugins which will lint all paths.
 	return gulp.src(scriptPaths)
 		.pipe(plugins.eslint(esLintConfig))
 		.pipe(plugins.eslint.format())

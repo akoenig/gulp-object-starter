@@ -25,10 +25,12 @@ Package.prototype.evaluteRequiredPackageKeys = function() {
 	var testResults = hasObjectRequiredKeys(options, requiredPrimaryKeys);
 	var hasRequiredAttributes = testResults.result;
 
+	// An Package needs an configuration object.
 	if(!options) {
 		throw new Error('Please set an options object' + errorMessageSuffix);
 	}
 
+	// Throw an error for each missing primary key/val pair.
 	if(!hasRequiredAttributes) {
 		throw new Error('Attribute "' + testResults.missingKey + '" was not found' + errorMessageSuffix);
 	}
@@ -69,9 +71,11 @@ Package.prototype.createTasks = function() {
 Package.prototype.evaluteTasksRequiredKeys = function evaluteTasksRequiredKeys(tasksRequiredKeysObject, packageOptions) {
 	var hasRequiredAttributes = true;
 
+	// Loop over each section of the requiredKeysObject.
 	_.forEach(tasksRequiredKeysObject, function(requiredKeys, targetKey) {
 		var testResults = hasObjectRequiredKeys(packageOptions[targetKey], requiredKeys);
 
+		// If a missing key was found, throw an error.
 		if(!testResults.result && testResults.missingKey && hasRequiredAttributes) {
 			hasRequiredAttributes = false;
 

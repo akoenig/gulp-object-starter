@@ -25,7 +25,10 @@ module.exports = {
 			return this;
 		}
 
+		// Since browserify is bundle based, and a package could have multiple bundles, loop over the bundles array.
 		return bundles.forEach(function(bundle) {
+			// Since we dont want much repition in each PackageConfig file, and the browserify API needs the full reference to each bundle file,
+			// build a new browserifyConfig which will be passed to the API.
 			var browserifyConfig = {
 				entries: bundle.src ? './' + srcBasePath + bundle.src : null,
 				dest: destBasePath,
@@ -35,11 +38,14 @@ module.exports = {
 			var bundleSettings = bundle.settings;
 			var taskName = 'compile:scripts:' + packageName + ':' + bundle.name;
 
+			// Push the taskName which will be created, to an main array which holds all taskNames for the super-tasks/compiler (f.e. compile:scripts).
 			config.tasks.push(taskName);
 
+			// Create the sub-bundle-compiler task.
 			return gulp.task(taskName, function() {
 				var b = browserify(browserifyConfig);
 
+				// API support for browserify.
 				if(bundleSettings.external) {
 					b.external(bundleSettings.external);
 				}

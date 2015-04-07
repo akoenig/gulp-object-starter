@@ -8,6 +8,7 @@ gulp.task('watch', function watch() {
 	var sassPaths = [];
 	var scriptPaths = [];
 
+	// Loop over each package, and push the paths to the coresponding array.
 	packages.forEach(function(packageModel) {
 		var packageConfig = packageModel.options;
 		var packageBasePath = packageConfig.basePath;
@@ -23,6 +24,7 @@ gulp.task('watch', function watch() {
 		}
 	});
 
+	// Kick off the watchers.
 	gulp.watch(sassPaths, ['compile:sass']);
 	gulp.watch(scriptPaths, ['compile:scripts']);
 });

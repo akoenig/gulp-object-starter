@@ -20,8 +20,10 @@ module.exports = {
 			return this;
 		}
 
+		// Push the taskName which will be created, to an main array which holds all taskNames for the super-tasks/compiler (f.e. compile:sass).
 		config.tasks.push(taskName);
 
+		// Create the sub-compiler task.
 		return gulp.task(taskName, function() {
 			return gulp.src(packageBasePath + sassConfig.src + sassConfig.filePattern)
 				.pipe(plugins.sass(sassConfig.settings))

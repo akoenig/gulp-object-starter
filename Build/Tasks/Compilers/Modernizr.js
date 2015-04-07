@@ -10,12 +10,14 @@ gulp.task('compile:modernizr', function() {
 
 	var searchPaths = [];
 
+	// Loop over each package.
 	packages.forEach(function(packageModel) {
 		var packageConfig = packageModel.options;
 		var packageBasePath = packageConfig.basePath;
 		var sassConfig = packageConfig.sass;
 		var scriptsConfig = packageConfig.scripts;
 
+		// Add search paths, if the package has sass/js sources.
 		if(sassConfig) {
 			searchPaths.push(packageBasePath + sassConfig.src + sassConfig.filePattern);
 		}
@@ -25,6 +27,7 @@ gulp.task('compile:modernizr', function() {
 		}
 	});
 
+	// Scan all searchPaths, and build the final modernizr file.
 	return gulp.src(searchPaths)
 		.pipe(plugins.modernizr(modernizrConfig.fileName, modernizrConfig.config))
 		.on('error', Logger)
