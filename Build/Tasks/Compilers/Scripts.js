@@ -35,7 +35,7 @@ module.exports = {
 				outputName: bundle.dest,
 				transform: bundle.transform
 			};
-			var bundleSettings = bundle.settings;
+			var bundleSettings = bundle.settings || {};
 			var taskName = 'compile:scripts:' + packageName + ':' + bundle.name;
 
 			// Push the taskName which will be created, to an main array which holds all taskNames for the super-tasks/compiler (f.e. compile:scripts).
