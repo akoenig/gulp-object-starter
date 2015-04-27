@@ -16,7 +16,7 @@ module.exports = {
         'dest': paths.public + 'Styles/',
 
         // The filepattern to watch and compile.
-        'filePattern': '*.scss',
+        'filePattern': '**/*.scss',
 
         // Additional settings for node-sass.
         'settings': {
@@ -31,7 +31,7 @@ module.exports = {
         'dest': paths.public + 'Images/',
 
         // The filepattern to compile.
-        'filePattern': '*.{png,jpg,gif,svg}',
+        'filePattern': '**/*.{png,jpg,gif,svg}',
 
         // Additional settings for the imagemin plugin.
         'settings': {
@@ -48,7 +48,7 @@ module.exports = {
         'dest': paths.public + 'Scripts/',
 
         // The filepattern to watch and compile.
-        'filePattern': '*.js',
+        'filePattern': '**/*.js',
 
         // The JS bundles to create with browserify, this example creates 2 bundles;
         // The first one inherits all the application logic, the second one bundles all vendor dependencies for faster build times.
