@@ -44,8 +44,8 @@ module.exports = {
 
     // Example configuration for scripts related tasks.
     'scripts': {
-        'src': paths.private + 'Scripts/',
-        'dest': paths.public + 'Scripts/',
+        'src': paths.private + 'JavaScript/',
+        'dest': paths.public + 'JavaScript/',
 
         // The filepattern to watch and compile.
         'filePattern': '**/*.js',
