@@ -47,7 +47,7 @@ module.exports = {
         'src': paths.private + 'JavaScript/',
         'dest': paths.public + 'JavaScript/',
 
-        // The filepattern to watch and compile.
+        // The filepattern to watch, compile and lint.
         'filePattern': '**/*.js',
 
         // The JS bundles to create with browserify, this example creates 2 bundles;
