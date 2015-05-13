@@ -10,7 +10,7 @@ var config = {
 		'docs': 'Documentation/'
 	},
 
-	// Project related settings, switching the 'isInLiveMode' bool to true, minifies the assets in each build task.
+	// Project related settings, switching the 'isInLiveMode' bool to true, minifies the assets on each build/compile task run.
 	'project': {
 		'isInLiveMode': false,
 		'browserSupport': ['last 2 versions', 'ie 9']
@@ -29,7 +29,7 @@ var config = {
 		'destPath': 'Web/Modernizr/',
 		'config': {
 
-			// Based on default settings on http://modernizr.com/download/
+			// Based on default settings of http://modernizr.com/download/
 			'options': [
 				'setClasses',
 				'addTest',

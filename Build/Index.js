@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var Packages = require('./Repositories/Packages.js');
-var createParentTasks = require('./Utilities/CreateParentTasks.js');
+var createSuperTask = require('./Utilities/CreateSuperTask.js');
 var singleton;
 
 var Build = function Build() {
@@ -8,10 +8,10 @@ var Build = function Build() {
 
 	this.packagesRepository = new Packages();
 
-	this.createPackageBasedTasks();
+	this._addPackageBasedTasks();
 };
 
-Build.prototype.createPackageBasedTasks = function() {
+Build.prototype._addPackageBasedTasks = function() {
 	'use strict';
 
 	// Setup tasks which are re-created for each package.
@@ -31,8 +31,8 @@ Build.prototype.addPackages = function(packageConfigs) {
 		this.packagesRepository.addPackage(packageConfig);
 	}.bind(this));
 
-	this.createParentTasks();
-	this.createAdditionalTasks();
+	this._createSuperTasks();
+	this._createAdditionalTasks();
 };
 Build.prototype.getPackages = function() {
 	'use strict';
@@ -40,22 +40,25 @@ Build.prototype.getPackages = function() {
 	return this.packagesRepository.getPackages();
 };
 
-Build.prototype.createParentTasks = function() {
+Build.prototype._createSuperTasks = function() {
 	'use strict';
 
 	var tasksArray = require('./Config.js').tasks;
 
-	// Create a task with the second argument, which runs every task which name inherits the second argument as a part of the name. F.e.
-	// createParentTasks(tasksArray, 'compile:sass'); -> gulp.task('compile:sass') -> ['compile:sass:package1', 'compile:sass:package2']
-	createParentTasks(tasksArray, 'compile:sass');
-	createParentTasks(tasksArray, 'compile:scripts');
+	// Create a task named after the second argument, which will run each matching taskName of the passed 'tasksArray' - F.e.
+	//
+	// createParentTasks(tasksArray, 'compile:sass');
+	//
+	// will create a superTask of 'compile:sass:package1' and 'compile:sass:package2'.
+	createSuperTask(tasksArray, 'compile:sass');
+	createSuperTask(tasksArray, 'compile:scripts');
 
-	createParentTasks(tasksArray, 'minify:images');
-	createParentTasks(tasksArray, 'minify:scripts');
-	createParentTasks(tasksArray, 'minify:styles');
+	createSuperTask(tasksArray, 'minify:images');
+	createSuperTask(tasksArray, 'minify:scripts');
+	createSuperTask(tasksArray, 'minify:styles');
 };
 
-Build.prototype.createAdditionalTasks = function() {
+Build.prototype._createAdditionalTasks = function() {
 	'use strict';
 
 	require('./Tasks/Compilers/Modernizr.js');

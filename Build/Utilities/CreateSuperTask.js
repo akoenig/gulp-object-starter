@@ -2,14 +2,14 @@ var _ = require('lodash');
 var gulp = require('gulp');
 var config = require('./../Config.js');
 
-// Creates super-tasks of a list of taskNames. F.e.
+// Creates superTasks of a list of taskNames. F.e.
 //
 // tasksArray = ['compile:sass:package1', 'compile:sass:package2', 'compile:scripts:package1', 'compile:scripts:package2'];
 // taskNameToCreate = 'compile:sass';
 //
 // Creates an task which will execute each taskName which fits into the taskNameToCreate scheme:
 // => gulp.task('compile:sass', ['compile:sass:package1', 'compile:sass:package2']);
-module.exports = function createParentTasks(tasksArray, taskNameToCreate) {
+module.exports = function createSuperTask(tasksArray, taskNameToCreate) {
 	'use strict';
 
 	var tasksToRun = [];
