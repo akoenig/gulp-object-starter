@@ -4,7 +4,7 @@ var config = {
 
 	// A collection of the structure paths, can be used to quickly adjust the project structure.
 	'paths': {
-		'packages': 'Web/typo3conf/ext/',
+		'packages': 'Packages/',
 		'private': 'Resources/Private/', // Will be based on the packages path above.
 		'public': 'Resources/Public/', // Will be based on the packages path above.
 		'docs': 'Documentation/'

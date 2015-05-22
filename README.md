@@ -1,10 +1,10 @@
-# gulp-typo3-starter [![Dependency Status](https://david-dm.org/Inkdpixels/gulp-typo3-starter.svg)](https://david-dm.org/Inkdpixels/gulp-typo3-starter) [![devDependency Status](https://david-dm.org/Inkdpixels/gulp-typo3-starter/dev-status.svg)](https://david-dm.org/Inkdpixels/gulp-typo3-starter#info=devDependencies)
+# gulp-object-starter [![Dependency Status](https://david-dm.org/Inkdpixels/gulp-object-starter.svg)](https://david-dm.org/Inkdpixels/gulp-object-starter) [![devDependency Status](https://david-dm.org/Inkdpixels/gulp-object-starter/dev-status.svg)](https://david-dm.org/Inkdpixels/gulp-object-starter#info=devDependencies)
 
-> Starter Gulpfile.js and structure for TYPO3/multi-package based projects.
+> Starter Gulpfile.js and structure for an object like configuration for multiple packages in one gulp instance.
 
 ## Features
 This starter kit includes a lean config based setup for several binaries/tools. It's not fixed on a single working directory.
-Instead, you can configure each of your developed Apps/Packages/TYPO3 Extensions separately without installing a new gulp instance in each working directory.
+Instead, you can configure each of your developed Apps/Packages Extensions separately without installing a new gulp instance in each working directory.
 
 The default installed packages are:
 * Compiling of [Sass](http://sass-lang.com/) files via [node-sass](https://github.com/sass/node-sass).
