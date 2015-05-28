@@ -20,7 +20,7 @@ module.exports = {
 
         // Additional settings for node-sass.
         'settings': {
-             // Used by the image-url helper.
+            // Used by the image-url helper.
             'imagePath': '../Images'
         }
     },

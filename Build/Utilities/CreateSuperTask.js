@@ -10,23 +10,23 @@ var config = require('./../Config.js');
 // Creates an task which will execute each taskName which fits into the taskNameToCreate scheme:
 // => gulp.task('compile:sass', ['compile:sass:package1', 'compile:sass:package2']);
 module.exports = function createSuperTask(tasksArray, taskNameToCreate) {
-	'use strict';
+    'use strict';
 
-	var tasksToRun = [];
-	var task = null;
+    var tasksToRun = [];
+    var task = null;
 
-	_.forEach(tasksArray, function(taskName) {
-		var isTaskNameRelevant = taskName.indexOf(taskNameToCreate) >= 0;
+    _.forEach(tasksArray, function (taskName) {
+        var isTaskNameRelevant = taskName.indexOf(taskNameToCreate) >= 0;
 
-		if(isTaskNameRelevant) {
-			tasksToRun.push(taskName);
-		}
-	});
+        if (isTaskNameRelevant) {
+            tasksToRun.push(taskName);
+        }
+    });
 
-	if(tasksToRun.length) {
-		config.tasks.push(taskNameToCreate);
-		task = gulp.task(taskNameToCreate, tasksToRun);
-	}
+    if (tasksToRun.length) {
+        config.tasks.push(taskNameToCreate);
+        task = gulp.task(taskNameToCreate, tasksToRun);
+    }
 
-	return task;
+    return task;
 };

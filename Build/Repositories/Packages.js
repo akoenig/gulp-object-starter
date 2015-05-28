@@ -2,43 +2,43 @@ var Package = require('./../Models/Package.js');
 var _ = require('lodash');
 
 var Packages = function Packages() {
-	'use strict';
+    'use strict';
 
-	this.models = [];
-	this.taskFunctions = [];
+    this.models = [];
+    this.taskFunctions = [];
 };
-Packages.prototype.addPackage = function(packageOptions) {
-	'use strict';
+Packages.prototype.addPackage = function (packageOptions) {
+    'use strict';
 
-	var config = _.extend({}, {
-		options: packageOptions
-	}, {
-		repository: this
-	});
-	var newPackage = new Package(config);
+    var config = _.extend({}, {
+        options: packageOptions
+    }, {
+        repository: this
+    });
+    var newPackage = new Package(config);
 
-	this.models.push(newPackage);
+    this.models.push(newPackage);
 
-	return newPackage;
+    return newPackage;
 };
-Packages.prototype.getPackages = function() {
-	'use strict';
+Packages.prototype.getPackages = function () {
+    'use strict';
 
-	return this.models;
+    return this.models;
 };
-Packages.prototype.addPackageTask = function(tasks) {
-	'use strict';
+Packages.prototype.addPackageTask = function (tasks) {
+    'use strict';
 
-	_.forEach(tasks, function(task) {
-		this.taskFunctions.push(task);
-	}.bind(this));
+    _.forEach(tasks, function (task) {
+        this.taskFunctions.push(task);
+    }.bind(this));
 
-	return this;
+    return this;
 };
-Packages.prototype.getPackageTasks = function() {
-	'use strict';
+Packages.prototype.getPackageTasks = function () {
+    'use strict';
 
-	return this.taskFunctions;
+    return this.taskFunctions;
 };
 
 module.exports = Packages;
