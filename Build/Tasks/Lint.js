@@ -16,7 +16,7 @@ gulp.task('lint', function lint() {
         var scriptsConfig = packageConfig.scripts;
 
         if (scriptsConfig) {
-            scriptPaths.push(packageConfig.basePath + scriptsConfig.src + scriptsConfig.filePattern);
+            scriptPaths = scriptPaths.concat(packageModel.getBasePaths('scripts'));
         }
     });
 

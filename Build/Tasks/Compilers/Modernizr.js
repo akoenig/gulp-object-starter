@@ -13,17 +13,14 @@ gulp.task('compile:modernizr', function () {
     // Loop over each package.
     packages.forEach(function (packageModel) {
         var packageConfig = packageModel.options;
-        var packageBasePath = packageConfig.basePath;
-        var sassConfig = packageConfig.sass;
-        var scriptsConfig = packageConfig.scripts;
 
         // Add search paths, if the package has sass/js sources.
-        if (sassConfig) {
-            searchPaths.push(packageBasePath + sassConfig.src + sassConfig.filePattern);
+        if (packageConfig.sass) {
+            searchPaths = searchPaths.concat(packageModel.getBasePaths('sass'));
         }
 
-        if (scriptsConfig) {
-            searchPaths.push(packageBasePath + scriptsConfig.src + scriptsConfig.filePattern);
+        if (packageConfig.scripts) {
+            searchPaths = searchPaths.concat(packageModel.getBasePaths('scripts'));
         }
     });
 

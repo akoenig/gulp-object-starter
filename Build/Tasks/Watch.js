@@ -11,16 +11,13 @@ gulp.task('watch', function watch() {
     // Loop over each package, and push the paths to the coresponding array.
     packages.forEach(function (packageModel) {
         var packageConfig = packageModel.options;
-        var packageBasePath = packageConfig.basePath;
-        var sassConfig = packageConfig.sass;
-        var scriptsConfig = packageConfig.scripts;
 
-        if (sassConfig) {
-            sassPaths.push(packageBasePath + sassConfig.src + sassConfig.filePattern);
+        if (packageConfig.sass) {
+            sassPaths = sassPaths.concat(packageModel.getBasePaths('sass'));
         }
 
-        if (scriptsConfig) {
-            scriptPaths.push(packageBasePath + scriptsConfig.src + scriptsConfig.filePattern)
+        if (packageConfig.scripts) {
+            scriptPaths = scriptPaths.concat(packageModel.getBasePaths('scripts'));
         }
     });
 

@@ -69,6 +69,8 @@ Package.prototype.createTasks = function () {
 };
 
 Package.prototype.evaluteTasksRequiredKeys = function evaluteTasksRequiredKeys(tasksRequiredKeysObject, packageOptions) {
+    'use strict';
+
     var hasRequiredAttributes = true;
 
     // Loop over each section of the requiredKeysObject.
@@ -84,6 +86,31 @@ Package.prototype.evaluteTasksRequiredKeys = function evaluteTasksRequiredKeys(t
     });
 
     return hasRequiredAttributes;
+};
+
+Package.prototype.getBasePaths = function (type) {
+    'use strict';
+
+    var packageConfig = this.options;
+    var typeConfig = packageConfig[type];
+    var basePaths = [];
+
+    if (typeConfig) {
+        if (_.isArray(typeConfig.filePattern)) {
+            typeConfig.filePattern.forEach(function (filePattern) {
+                var basePath = packageConfig.basePath + typeConfig.src + filePattern;
+                if (filePattern.indexOf('!') === 0) {
+                    basePath = '!' + packageConfig.basePath + typeConfig.src + filePattern.replace('!', '');
+                }
+
+                basePaths.push(basePath);
+            });
+        } else {
+            basePaths.push(packageConfig.basePath + typeConfig.src + typeConfig.filePattern);
+        }
+    }
+
+    return basePaths;
 };
 
 module.exports = Package;

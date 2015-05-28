@@ -25,7 +25,7 @@ module.exports = {
 
         // Create the sub-minifier task.
         return gulp.task(taskName, function () {
-            return gulp.src(packageBasePath + imagesConfig.src + imagesConfig.filePattern)
+            return gulp.src(packageModel.getBasePaths('images'))
                 .pipe(plugins.imagemin(imagesConfig.settings))
                 .on('error', Logger)
                 .pipe(gulp.dest(packageBasePath + imagesConfig.dest));

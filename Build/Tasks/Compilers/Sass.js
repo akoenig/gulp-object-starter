@@ -25,7 +25,7 @@ module.exports = {
 
         // Create the sub-compiler task.
         return gulp.task(taskName, function () {
-            return gulp.src(packageBasePath + sassConfig.src + sassConfig.filePattern)
+            return gulp.src(packageModel.getBasePaths('sass'))
                 .pipe(plugins.sass(sassConfig.settings))
                 .on('error', Logger)
                 .pipe(plugins.autoprefixer({
