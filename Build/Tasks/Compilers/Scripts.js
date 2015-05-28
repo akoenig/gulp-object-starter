@@ -58,6 +58,9 @@ module.exports = {
                 if (bundleSettings.require) {
                     b.require(bundleSettings.require);
                 }
+                if (bundleSettings.transforms) {
+                    b.transform(bundleSettings.transforms);
+                }
 
                 return b.bundle()
                     .on('error', Logger)
