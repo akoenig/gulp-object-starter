@@ -5,23 +5,17 @@ var packages = require('./../Index.js').getPackages();
 gulp.task('watch', function watch() {
     'use strict';
 
-    var sassPaths = [];
-    var scriptPaths = [];
-
-    // Loop over each package, and push the paths to the coresponding array.
+    // Loop over each package, and create a watcher for each task type.
     packages.forEach(function (packageModel) {
         var packageConfig = packageModel.options;
+        var packageName = packageConfig.name;
 
         if (packageConfig.sass) {
-            sassPaths = sassPaths.concat(packageModel.getBasePaths('sass'));
+            gulp.watch(packageModel.getBasePaths('sass'), ['compile:sass:' + packageName]);
         }
 
         if (packageConfig.scripts) {
-            scriptPaths = scriptPaths.concat(packageModel.getBasePaths('scripts'));
+            gulp.watch(packageModel.getBasePaths('scripts'), ['compile:scripts:' + packageName]);
         }
     });
-
-    // Kick off the watchers.
-    gulp.watch(sassPaths, ['compile:sass']);
-    gulp.watch(scriptPaths, ['compile:scripts']);
 });
