@@ -15,7 +15,7 @@ gulp.task('watch', function watch() {
         }
 
         if (packageConfig.scripts) {
-            gulp.watch(packageModel.getBasePaths('scripts'), ['compile:scripts:' + packageName]);
+            gulp.watch(packageModel.getBasePaths('scripts'), ['lint:' + packageName, 'compile:scripts:' + packageName]);
         }
     });
 });
