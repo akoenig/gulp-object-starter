@@ -24,8 +24,6 @@ packages.forEach(function (packageModel) {
         return gulp.src(packageModel.getBasePaths('scripts'))
             .pipe(plugins.eslint(esLintConfig))
             .pipe(plugins.eslint.format())
-            .on('error', Logger)
-            .pipe(plugins.jscs(config.jscs))
             .on('error', Logger);
     });
 });

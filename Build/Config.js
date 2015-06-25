@@ -8,13 +8,6 @@ module.exports = {
         'browserSupport': ['last 2 versions', 'ie 9']
     },
 
-    // Configuration rules for http://jscs.info/
-    'jscs': {
-        'esnext': true,
-        'preset': 'google',
-        'validateIndentation': null
-    },
-
     // Configuration for https://github.com/doctyper/gulp-modernizr
     'modernizr': {
         'fileName': 'Modernizr.js',
