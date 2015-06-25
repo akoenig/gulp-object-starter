@@ -2,14 +2,6 @@ var config = {
     // Empty tasks array which will be filled with the aviable taskNames on each gulp run.
     'tasks': [],
 
-    // A collection of the structure paths, can be used to quickly adjust the project structure.
-    'paths': {
-        'packages': 'Packages/',
-        'private': 'Resources/Private/', // Will be based on the packages path above.
-        'public': 'Resources/Public/', // Will be based on the packages path above.
-        'docs': 'Documentation/'
-    },
-
     // Project related settings, switching the 'isInLiveMode' bool to true, minifies the assets on each build/compile task run.
     'project': {
         'isInLiveMode': false,
