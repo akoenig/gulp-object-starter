@@ -95,7 +95,7 @@ After you've changed the `namespace` and `basePath` values, you just need to add
         // The first one inherits all the application logic, the second one bundles all vendor dependencies for faster build times.
         'bundles': [
             {
-                // The namespace for the task, f.e.: compile:scripts:main
+                // The name for the task, f.e.: compile:scripts:myPackage:main
                 'name': 'main',
 
                 // The entry file for browserify, relative to the src path described above.
