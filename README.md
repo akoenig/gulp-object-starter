@@ -2,11 +2,14 @@
 
 > Starter Gulpfile.js and structure for an object like configuration for multiple packages in one gulp instance.
 
-## Features
-This starter kit includes a lean config based setup for several binaries/tools. It's not fixed on a single working directory.
-Instead, you can configure each of your developed Apps/Packages Extensions separately without installing a new gulp instance in each working directory.
+## Why?
+Gulp is awesome, but introduces a lot of duplicate code if you are developing in a package based environment.
+For example, if you are developing multiple packages/extensions/templates in a single project, you dont want to install the same gulp-plugins in each package directory and configure the same tasks over and over again.  
 
-The default installed packages are:
+Gulp-Object-Starter introduces a grunt-like config approach for creating gulp-tasks to reduce duplicate and malfunctioning code. The configuration objects are standarized over all packages, and one after another will create seperate tasks and chained, so called, super-tasks.
+
+## Integrated Gulp-Packages/Plugins
+
 * Compiling of [Sass](http://sass-lang.com/) files via [node-sass](https://github.com/sass/node-sass).
 * Handling of CSS vendor prefixes of via [autoprefixer](https://github.com/postcss/autoprefixer).
 * Bundling of JavaScript files via [browserify](http://browserify.org/).
@@ -16,13 +19,109 @@ The default installed packages are:
 * Minification of JavaScript files via [UglifyJS2](https://github.com/mishoo/UglifyJS2).
 * Minification of Images via [Imagemin](https://github.com/imagemin/imagemin).
 
-## Integration in your project
+## Integration into your project
+### Installation
 Download a release from the [releases page](https://github.com/Inkdpixels/WebFontJSONLoader/releases), extract the `Gulpfile.js` as well as the `package.json` and `Build/` folder into your projects root.
 Afterwards, execute the following command to install all gulp dependencies.
 ```shell
 npm install
 ```
-Once all dependencies are installed properly, copy the example `PackageConfig.js` into your package root, and adjust the paths settings. Afterwards pass the config in the `Gulptfile.js` to the `build.addPackages()` method.
+
+### Project Configuration
+The main project configuration variables lay within `Build/Config.js`. Inside this file you can configure the projects browser-support, a boolean `isInLiveMode` which will handle minification of all assets once this value is `true` and additionally some configuration for your modernizr build.
+
+### Package Configuration
+In each of your package directories, you should create a `.js` file(f.e. `BuildConfig.js`). 
+This file will serve the so called configuration-object to Gulp-Object-Starter. 
+The basic configuration object consists of the following key value pairs:
+```javascript
+module.exports = {
+      // The name of the package, which also respresents the task namespace.
+    'name': 'myPackage',
+
+    // The working directory of the package, on which all paths are based upon.
+    'basePath': 'Packages/myPackage/'
+};
+```
+
+After you've changed the `namespace` and `basePath` values, you just need to add your newly created `BuildConfig.js` to the `build.addPackages()` method inside your `Gulptfile.js` in the projects root.
+
+#### Package Configuration (Sass)
+```javascript
+    // Example configuration for sass/css related tasks.
+    'sass': {
+        'src': 'Private/Sass/',
+        'dest': 'Public/Styles/',
+
+        // The filepattern to watch and compile.
+        'filePattern': '**/*.scss',
+
+        // Additional settings which will be directly passed to node-sass.
+        'settings': {}
+    }
+```
+
+#### Package Configuration (Images)
+```javascript
+    // Example configuration for images related tasks.
+    'images': {
+        'src': paths.private + 'Images/',
+        'dest': paths.public + 'Images/',
+
+        // The filepattern to compile.
+        'filePattern': '**/*.{png,jpg,gif,svg}',
+
+        // Additional settings for the imagemin plugin.
+        'settings': {
+            'progressive': true,
+            'svgoPlugins': [{
+                'removeViewBox': false
+            }]
+        }
+    }
+```
+
+#### Package Configuration (JS)
+```javascript
+    // Example configuration for scripts related tasks.
+    'scripts': {
+        'src': paths.private + 'JavaScript/',
+        'dest': paths.public + 'JavaScript/',
+
+        // The filepattern to watch, compile and lint.
+        'filePattern': ['**/*.js', '!Vendor/**/*.js'],
+
+        // The JS bundles to create with browserify, this example creates 2 bundles;
+        // The first one inherits all the application logic, the second one bundles all vendor dependencies for faster build times.
+        'bundles': [
+            {
+                // The namespace for the task, f.e.: compile:scripts:main
+                'name': 'main',
+
+                // The entry file for browserify, relative to the src path described above.
+                'src': 'App.js',
+
+                // The outName for browserify, relative to the dest path described above.
+                'dest': 'App.min.js',
+
+                // Additional settings for browserify.
+                'settings': {
+                    'external': ['lodash']
+                }
+            },
+            {
+                'name': 'vendor',
+                'src': null,
+                'dest': 'Vendor.min.js',
+                'settings': {
+                    'external': null,
+                    'require': ['lodash']
+                }
+            }
+        ]
+    }
+```
+
 
 ## Tasks
 | Task name                    | description                                                                                                                       |
