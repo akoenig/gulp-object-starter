@@ -1,4 +1,4 @@
-var config = {
+module.exports = {
     // Empty tasks array which will be filled with the aviable taskNames on each gulp run.
     'tasks': [],
 
@@ -32,5 +32,3 @@ var config = {
         }
     }
 };
-
-module.exports = config;
