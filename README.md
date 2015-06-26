@@ -20,7 +20,7 @@ Gulp-Object-Starter introduces a grunt-like config approach for creating gulp-ta
 
 ## Integration into your project
 ### Installation
-Download a release from the [releases page](https://github.com/Inkdpixels/WebFontJSONLoader/releases), extract the `Gulpfile.js` as well as the `package.json` and `Build/` folder into your projects root.
+Download a release from the [releases page](https://github.com/Inkdpixels/gulp-object-starter/releases), extract the `Gulpfile.js` as well as the `package.json` and `Build/` folder into your projects root.
 Afterwards, execute the following command to install all gulp dependencies.
 ```shell
 npm install
