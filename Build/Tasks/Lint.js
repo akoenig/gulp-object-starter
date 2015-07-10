@@ -1,7 +1,9 @@
+var path = require('path');
+
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var Logger = require('./../Utilities/Logger.js');
-var esLintConfig = require('./../.ESLintConfig');
+var esLintConfig = path.join(__dirname, '..', '.ESLintConfig.json');
 var config = require('./../Config.js');
 var packages = require('./../Index.js').getPackages();
 
